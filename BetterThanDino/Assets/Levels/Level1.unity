@@ -269,9 +269,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  jumpForce: 0
   Health: 60
   MaxHealth: 80
   healthBar: {fileID: 1375716834}
+  groundCheck: {fileID: 1724705472}
+  groundCheckRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &743800948
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +587,7 @@ GameObject:
   - component: {fileID: 1724705472}
   - component: {fileID: 1724705471}
   - component: {fileID: 1724705470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
