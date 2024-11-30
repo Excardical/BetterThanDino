@@ -173,10 +173,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 93520050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e51299a322e9f4a836a9ffcbfc06cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 490ee69b53c542948b21edde9d6002c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  health: 100
+  attackPower: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -336,10 +338,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 117518855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e51299a322e9f4a836a9ffcbfc06cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b72acfab8ed25e4382820cb9ae9ebb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  health: 100
+  attackPower: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -603,10 +607,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 155970829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e51299a322e9f4a836a9ffcbfc06cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1321f6de57f424f4cb11bc35a349dd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  health: 100
+  attackPower: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1495,14 +1501,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 445709336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e51299a322e9f4a836a9ffcbfc06cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d0382e3c3aa4cc4ca4b87727f850163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  health: 100
+  attackPower: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  detectionRadius: 1.85
+  detectionRadius: 3
 --- !u!50 &445709339
 Rigidbody2D:
   serializedVersion: 4
@@ -1822,10 +1830,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563356871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e51299a322e9f4a836a9ffcbfc06cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 475abde4f2c969c4fb5504728666f374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  health: 100
+  attackPower: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -2089,10 +2099,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799539731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e51299a322e9f4a836a9ffcbfc06cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 07a7dc5ce0388034581dbc15ddc350f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  health: 100
+  attackPower: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
