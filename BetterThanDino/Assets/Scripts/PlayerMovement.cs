@@ -5,7 +5,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce; // Force applied to jump
     private bool isGrounded; // To check if the player is on the ground
+    public int facingDirection = 1;
     private Rigidbody2D body;
+    public Animator anim;
 
     public float Health, MaxHealth;
     [SerializeField] private HealthbarUI healthBar;
@@ -24,35 +26,44 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (horizontalInput > 0 && transform.localScale.x < 0 ||
+            horizontalInput < 0 && transform.localScale.x > 0)
+        {
+            Flip();
+        }
+        anim.SetFloat("horizontal", Mathf.Abs(horizontalInput));
     }
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-
-        //flip player when moving left/right
-        if (horizontalInput > 0.01f)
-            transform.localScale = Vector3.one;
-        else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3(1, -1, 1);
-            
         //to jump    
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
         }
 
-        if(Input.GetKeyDown("x")) {
+        if (Input.GetKeyDown("x"))
+        {
             SetHealth(-20f);
         }
-        if(Input.GetKeyDown("z")) {
+        if (Input.GetKeyDown("z"))
+        {
             SetHealth(+20f);
         }
     }
 
-    public void SetHealth(float healthChange) {
+    public void SetHealth(float healthChange)
+    {
         Health += healthChange;
         Health = Mathf.Clamp(Health, 0, MaxHealth);
 
         healthBar.SetHealth(Health);
+    }
+
+    void Flip()
+    {
+        facingDirection *= -1;
+        transform.localScale = new Vector3(transform.localScale.x*-1,transform.localScale.y,transform.localScale.z);
     }
 }
