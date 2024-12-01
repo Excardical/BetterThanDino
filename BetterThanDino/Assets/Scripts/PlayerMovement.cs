@@ -8,16 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public int facingDirection = 1;
     private Rigidbody2D body;
     public Animator anim;
-
-    public float Health, MaxHealth;
-    [SerializeField] private HealthbarUI healthBar;
     [SerializeField] private Transform groundCheck; // Transform to check ground collision
     [SerializeField] private float groundCheckRadius; // Radius of the ground check
     [SerializeField] private LayerMask groundLayer;
 
     private void Awake()
     {
-        healthBar.SetMaxHealth(MaxHealth);
         body = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
@@ -42,24 +38,8 @@ public class PlayerMovement : MonoBehaviour
         {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
         }
-
-        if (Input.GetKeyDown("x"))
-        {
-            SetHealth(-20f);
-        }
-        if (Input.GetKeyDown("z"))
-        {
-            SetHealth(+20f);
-        }
     }
 
-    public void SetHealth(float healthChange)
-    {
-        Health += healthChange;
-        Health = Mathf.Clamp(Health, 0, MaxHealth);
-
-        healthBar.SetHealth(Health);
-    }
 
     void Flip()
     {
