@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
     [SerializeField] private float jumpForce; // Force applied to jump
     private bool isGrounded; // To check if the player is on the ground
     private bool isKnockedBack;
@@ -24,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         if (isKnockedBack == false)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            body.velocity = new Vector2(horizontalInput * StatsManager.Instance.speed, body.velocity.y);
 
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
