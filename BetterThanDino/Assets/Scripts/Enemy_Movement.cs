@@ -30,19 +30,22 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForPlayer();
-        if (attackCooldownTimer > 0)
+        if (enemyState != EnemyState.Knockback)
         {
-            attackCooldownTimer -= Time.deltaTime;
-        }
-        if (enemyState == EnemyState.Chasing)
-        {
-            Chase();
-        }
-        else if (enemyState == EnemyState.Attacking)
-        {
-            //Do attack
-            rb.velocity = Vector2.zero;
+            CheckForPlayer();
+            if (attackCooldownTimer > 0)
+            {
+                attackCooldownTimer -= Time.deltaTime;
+            }
+            if (enemyState == EnemyState.Chasing)
+            {
+                Chase();
+            }
+            else if (enemyState == EnemyState.Attacking)
+            {
+                //Do attack
+                rb.velocity = Vector2.zero;
+            }
         }
     }
 
@@ -94,7 +97,7 @@ public class Enemy_Movement : MonoBehaviour
     }
 
 
-    void ChangeState(EnemyState newState)
+    public void ChangeState(EnemyState newState)
     {
         //exit the current animation
         if (enemyState == EnemyState.Idle)
@@ -116,14 +119,16 @@ public class Enemy_Movement : MonoBehaviour
     }
 
     private void OnDrawGizmosSelected()
-    {   
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(detectionPoint.position, playerDetectRange);
     }
-    public enum EnemyState
-    {
-        Idle,
-        Chasing,
-        Attacking
-    }
+}
+
+public enum EnemyState
+{
+    Idle,
+    Chasing,
+    Attacking,
+    Knockback
 }

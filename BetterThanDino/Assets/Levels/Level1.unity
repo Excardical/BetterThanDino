@@ -1096,13 +1096,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1797302012}
-  weaponRange: 1
+  weaponRange: 0.7
+  knockbackForce: 10
+  knockbackTime: 0.15
+  stunTime: 0.2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   damage: 1
   anim: {fileID: 1156796180}
-  cooldown: 2
+  cooldown: 1
 --- !u!1 &1220628753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,7 +1889,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2022651341
-  m_SortingLayer: 5
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.06730517, g: 0.06127626, b: 0.4811321, a: 1}
@@ -1930,6 +1933,7 @@ GameObject:
   - component: {fileID: 1770412412}
   - component: {fileID: 1770412413}
   - component: {fileID: 1770412414}
+  - component: {fileID: 1770412415}
   m_Layer: 7
   m_Name: GoblinTorch
   m_TagString: Untagged
@@ -2118,6 +2122,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 5
   maxHealth: 5
+--- !u!114 &1770412415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770412406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16289b8a3e5512c46b8c9d86ae37d043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797302011
 GameObject:
   m_ObjectHideFlags: 0
