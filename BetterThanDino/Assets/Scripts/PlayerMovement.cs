@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce; // Force applied to jump
     private bool isGrounded; // To check if the player is on the ground
     private bool isKnockedBack;
+    public Player_Combat player_Combat;
     public int facingDirection = 1;
     private Rigidbody2D body;
     public Animator anim;
@@ -37,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if(Input.GetButtonDown("Slash"))
+        {
+            player_Combat.Attack();
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
         //to jump    
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
