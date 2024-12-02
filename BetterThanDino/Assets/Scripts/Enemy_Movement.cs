@@ -79,7 +79,7 @@ public class Enemy_Movement : MonoBehaviour
                 attackCooldownTimer = attackCooldown;
                 ChangeState(EnemyState.Attacking);
             }
-            else if (distanceToTarget > attackRange)
+            else if (distanceToTarget > attackRange && enemyState != EnemyState.Attacking)
             {
                 // Chase if out of attack range
                 ChangeState(EnemyState.Chasing);

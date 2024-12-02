@@ -1,10 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce; // Force applied to jump
     private bool isGrounded; // To check if the player is on the ground
+    private bool isKnockedBack;
     public int facingDirection = 1;
     private Rigidbody2D body;
     public Animator anim;
@@ -18,17 +20,20 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        if (horizontalInput > 0 && transform.localScale.x < 0 ||
-            horizontalInput < 0 && transform.localScale.x > 0)
+        if (isKnockedBack == false)
         {
-            Flip();
+            float horizontalInput = Input.GetAxis("Horizontal");
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+            if (horizontalInput > 0 && transform.localScale.x < 0 ||
+                horizontalInput < 0 && transform.localScale.x > 0)
+            {
+                Flip();
+            }
+            anim.SetFloat("horizontal", Mathf.Abs(horizontalInput));
         }
-        anim.SetFloat("horizontal", Mathf.Abs(horizontalInput));
     }
     private void Update()
     {
@@ -44,6 +49,21 @@ public class PlayerMovement : MonoBehaviour
     void Flip()
     {
         facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x*-1,transform.localScale.y,transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void Knockback(Transform enemy, float force, float stunTime)
+    {
+        isKnockedBack = true;
+        Vector2 direction = (transform.position - enemy.position).normalized;
+        body.velocity = direction * force;
+        StartCoroutine(KnockbackCounter(stunTime));
+    }
+
+    IEnumerator KnockbackCounter(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        body.velocity = Vector2.zero;
+        isKnockedBack = false;
     }
 }
