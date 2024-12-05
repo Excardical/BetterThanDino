@@ -5,62 +5,70 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject pauseButton;
+    [SerializeField] private CanvasGroup pauseMenuCanvasGroup;
+    [SerializeField] private GameObject pauseButton;
     private bool pauseOpen = false;
 
-    // private void Update()
-    // {
-    //     if (Input.GetButtonDown("TogglePause"))
-    //     {
-    //         Debug.Log("TogglePause button pressed");
-    //         if (!pauseOpen)
-    //         {
-    //             pauseButton.SetActive(false);
-    //             pauseMenu.SetActive(true);
-    //             Time.timeScale = 0;
-    //             pauseOpen = true;
-    //         }
-    //         else
-    //         {
-    //             pauseButton.SetActive(true);
-    
-    //             pauseMenu.SetActive(false);
-    //             Time.timeScale = 1;
-    //             pauseOpen = false;
-    //         }
-    //     }
-    // }
-    public void Pause()
+    void Update()
     {
-        pauseButton.SetActive(false);
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-        pauseOpen = true;
+        if (Input.GetButtonDown("TogglePause"))
+        {
+            TogglePause();
+        }
     }
 
+    public void TogglePause()
+    {
+        pauseOpen = !pauseOpen;
+        Debug.Log($"Pause toggled. IsPaused: {pauseOpen}");
+
+        if (pauseOpen)
+        {
+            ShowPauseMenu();
+            pauseButton.SetActive(false);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            HidePauseMenu();
+            pauseButton.SetActive(true);
+            Time.timeScale = 1;
+        }
+    }
+
+    private void ShowPauseMenu()
+    {
+        pauseMenuCanvasGroup.alpha = 1; // Make the canvas visible
+        pauseMenuCanvasGroup.interactable = true; // Enable interaction
+        pauseMenuCanvasGroup.blocksRaycasts = true; // Allow raycasts to pass through
+    }
+
+    private void HidePauseMenu()
+    {
+        pauseMenuCanvasGroup.alpha = 0; // Make the canvas invisible
+        pauseMenuCanvasGroup.interactable = false; // Disable interaction
+        pauseMenuCanvasGroup.blocksRaycasts = false; // Block raycasts
+    }
+
+    public void Pause()
+    {
+        TogglePause();
+    }
 
     public void Home()
     {
-        pauseButton.SetActive(true);
-        pauseMenu.SetActive(false);
-        SceneManager.LoadSceneAsync(0);
         Time.timeScale = 1;
-        pauseOpen = false;
+        SceneManager.LoadScene(0);
     }
+
     public void Resume()
     {
-        pauseButton.SetActive(true);
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-        pauseOpen = false;
+        TogglePause();
     }
+
     public void Restart()
     {
-        pauseButton.SetActive(true);
-        pauseMenu.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
-        pauseOpen = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
