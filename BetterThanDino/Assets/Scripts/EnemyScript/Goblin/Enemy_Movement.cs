@@ -8,12 +8,12 @@ public class Enemy_Movement : MonoBehaviour
     public float attackRange = 2;
     public float attackCooldown = 2;
     public float playerDetectRange = 5;
-    public float postAttackPauseTime = 2;
+    public float postAttackPauseTime = 100; // Reduced to a more reasonable time
+
     public Transform detectionPoint;
     public LayerMask playerLayer;
 
     private float attackCooldownTimer;
-    private int facingDirection = -1;
     private EnemyState enemyState;
     private bool isPostAttackPausing = false;
 
@@ -25,48 +25,54 @@ public class Enemy_Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        ChangeState(EnemyState.Idle);
+        MoveLeft();
     }
 
     void Update()
     {
-        if (enemyState != EnemyState.Knockback && !isPostAttackPausing)
+        if (enemyState != EnemyState.Knockback)
         {
-            CheckForPlayer();
             if (attackCooldownTimer > 0)
             {
                 attackCooldownTimer -= Time.deltaTime;
             }
-            if (enemyState == EnemyState.Chasing)
+
+            switch (enemyState)
             {
-                Chase();
+                case EnemyState.Idle:
+                    rb.velocity = Vector2.zero;
+                    break;
+                case EnemyState.Chasing:
+                    Chase();
+                    break;
+                case EnemyState.Attacking:
+                    rb.velocity = Vector2.zero;
+                    break;
+                case EnemyState.MoveLeft:
+                    MoveLeft();
+                    break;
             }
-            else if (enemyState == EnemyState.Attacking)
-            {
-                rb.velocity = Vector2.zero;
-            }
+
+            CheckForPlayer();
         }
+    }
+
+    void MoveLeft()
+    {
+        rb.velocity = Vector2.left * speed;
+        ChangeState(EnemyState.MoveLeft);
     }
 
     void Chase()
     {
         Vector2 direction = new Vector2(target.position.x - transform.position.x, 0).normalized;
         rb.velocity = direction * speed;
-        if (direction.x > 0 && facingDirection == -1 ||
-            direction.x < 0 && facingDirection == 1)
-        {
-            Flip();
-        }
-    }
-
-    private void Flip()
-    {
-        facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
     private void CheckForPlayer()
     {
+        if (isPostAttackPausing) return;
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, playerLayer);
 
         if (hits.Length > 0)
@@ -77,8 +83,8 @@ public class Enemy_Movement : MonoBehaviour
 
             if (distanceToTarget <= attackRange && attackCooldownTimer <= 0)
             {
-                attackCooldownTimer = attackCooldown;
                 ChangeState(EnemyState.Attacking);
+                attackCooldownTimer = attackCooldown;
                 StartCoroutine(PostAttackPause());
             }
             else if (distanceToTarget > attackRange && enemyState != EnemyState.Attacking)
@@ -86,60 +92,53 @@ public class Enemy_Movement : MonoBehaviour
                 ChangeState(EnemyState.Chasing);
             }
         }
-        else
+        else if (enemyState != EnemyState.Attacking)
         {
-            rb.velocity = Vector2.zero;
-            ChangeState(EnemyState.Idle);
+            ChangeState(EnemyState.MoveLeft);
         }
     }
+
 
     private IEnumerator PostAttackPause()
     {
         isPostAttackPausing = true;
-        rb.velocity = Vector2.zero;
 
+        // Play the attack animation and wait for it to complete
+        float attackAnimationLength = anim.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(attackAnimationLength);
+
+        // Transition to Idle state and pause
+        ChangeState(EnemyState.Idle);
         yield return new WaitForSeconds(postAttackPauseTime);
-        
-        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, playerLayer);
-        
-        if (hits.Length > 0)
-        {
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
-            
-            if (distanceToTarget <= attackRange)
-            {
-                ChangeState(EnemyState.Attacking);
-            }
-            else
-            {
-                ChangeState(EnemyState.Chasing);
-            }
-        }
-        else
-        {
-            ChangeState(EnemyState.Idle);
-        }
-
         isPostAttackPausing = false;
     }
 
+
     public void ChangeState(EnemyState newState)
     {
-        if (enemyState == EnemyState.Idle)
-            anim.SetBool("isIdle", false);
-        else if (enemyState == EnemyState.Chasing)
-            anim.SetBool("isChasing", false);
-        else if (enemyState == EnemyState.Attacking)
-            anim.SetBool("isAttacking", false);
+        // Reset all animation states
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isChasing", false);
+        anim.SetBool("isAttacking", false);
 
         enemyState = newState;
 
-        if (enemyState == EnemyState.Idle)
-            anim.SetBool("isIdle", true);
-        else if (enemyState == EnemyState.Chasing)
-            anim.SetBool("isChasing", true);
-        else if (enemyState == EnemyState.Attacking)
-            anim.SetBool("isAttacking", true);
+        // Set the appropriate animation state
+        switch (newState)
+        {
+            case EnemyState.Idle:
+                anim.SetBool("isIdle", true);
+                break;
+            case EnemyState.Chasing:
+                anim.SetBool("isChasing", true);
+                break;
+            case EnemyState.Attacking:
+                anim.SetBool("isAttacking", true);
+                break;
+            case EnemyState.MoveLeft:
+                anim.SetBool("isChasing", true);
+                break;
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -154,5 +153,6 @@ public enum EnemyState
     Idle,
     Chasing,
     Attacking,
-    Knockback
+    Knockback,
+    MoveLeft
 }
