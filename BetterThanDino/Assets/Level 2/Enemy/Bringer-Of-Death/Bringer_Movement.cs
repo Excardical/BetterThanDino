@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Movement : MonoBehaviour
+public class Bringer_Movement : MonoBehaviour
 {
     public float speed;
     public float attackRange = 2;
@@ -14,7 +14,7 @@ public class Enemy_Movement : MonoBehaviour
     public LayerMask playerLayer;
 
     private float attackCooldownTimer;
-    private EnemyState enemyState;
+    private BringerState bringerState; // Updated keyword
     private bool isPostAttackPausing = false;
 
     private Rigidbody2D rb;
@@ -30,28 +30,25 @@ public class Enemy_Movement : MonoBehaviour
 
     void Update()
     {
-        if (enemyState != EnemyState.Knockback)
+        if (bringerState != BringerState.Knockback) // Updated keyword
         {
             if (attackCooldownTimer > 0)
             {
                 attackCooldownTimer -= Time.deltaTime;
             }
 
-            switch (enemyState)
+            switch (bringerState) // Updated keyword
             {
-                case EnemyState.Idle:
+                case BringerState.Idle: // Updated keyword
                     rb.velocity = Vector2.zero;
                     break;
-                case EnemyState.Chasing:
+                case BringerState.Chasing: // Updated keyword
                     Chase();
                     break;
-                case EnemyState.Attacking:
-                    
-                    
-                    
+                case BringerState.Attacking: // Updated keyword
                     rb.velocity = Vector2.zero;
                     break;
-                case EnemyState.MoveLeft:
+                case BringerState.MoveLeft: // Updated keyword
                     MoveLeft();
                     break;
             }
@@ -63,7 +60,7 @@ public class Enemy_Movement : MonoBehaviour
     void MoveLeft()
     {
         rb.velocity = Vector2.left * speed;
-        ChangeState(EnemyState.MoveLeft);
+        ChangeState(BringerState.MoveLeft); // Updated keyword
     }
 
     void Chase()
@@ -86,21 +83,20 @@ public class Enemy_Movement : MonoBehaviour
 
             if (distanceToTarget <= attackRange && attackCooldownTimer <= 0)
             {
-                ChangeState(EnemyState.Attacking);
+                ChangeState(BringerState.Attacking); // Updated keyword
                 attackCooldownTimer = attackCooldown;
                 StartCoroutine(PostAttackPause());
             }
-            else if (distanceToTarget > attackRange && enemyState != EnemyState.Attacking)
+            else if (distanceToTarget > attackRange && bringerState != BringerState.Attacking) // Updated keyword
             {
-                ChangeState(EnemyState.Chasing);
+                ChangeState(BringerState.Chasing); // Updated keyword
             }
         }
-        else if (enemyState != EnemyState.Attacking)
+        else if (bringerState != BringerState.Attacking) // Updated keyword
         {
-            ChangeState(EnemyState.MoveLeft);
+            ChangeState(BringerState.MoveLeft); // Updated keyword
         }
     }
-
 
     private IEnumerator PostAttackPause()
     {
@@ -111,34 +107,33 @@ public class Enemy_Movement : MonoBehaviour
         yield return new WaitForSeconds(attackAnimationLength);
 
         // Transition to Idle state and pause
-        ChangeState(EnemyState.Idle);
+        ChangeState(BringerState.Idle); // Updated keyword
         yield return new WaitForSeconds(postAttackPauseTime);
         isPostAttackPausing = false;
     }
 
-
-    public void ChangeState(EnemyState newState)
+    public void ChangeState(BringerState newState) // Updated keyword
     {
         // Reset all animation states
         anim.SetBool("isIdle", false);
         anim.SetBool("isChasing", false);
         anim.SetBool("isAttacking", false);
 
-        enemyState = newState;
+        bringerState = newState; // Updated keyword
 
         // Set the appropriate animation state
-        switch (newState)
+        switch (newState) // Updated keyword
         {
-            case EnemyState.Idle:
+            case BringerState.Idle: // Updated keyword
                 anim.SetBool("isIdle", true);
                 break;
-            case EnemyState.Chasing:
+            case BringerState.Chasing: // Updated keyword
                 anim.SetBool("isChasing", true);
                 break;
-            case EnemyState.Attacking:
+            case BringerState.Attacking: // Updated keyword
                 anim.SetBool("isAttacking", true);
                 break;
-            case EnemyState.MoveLeft:
+            case BringerState.MoveLeft: // Updated keyword
                 anim.SetBool("isChasing", true);
                 break;
         }
@@ -151,7 +146,7 @@ public class Enemy_Movement : MonoBehaviour
     }
 }
 
-public enum EnemyState
+public enum BringerState // Updated keyword
 {
     Idle,
     Chasing,
