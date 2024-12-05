@@ -8,18 +8,19 @@ public class Enemy_Movement : MonoBehaviour
     public float attackRange = 2;
     public float attackCooldown = 2;
     public float playerDetectRange = 5;
+    public float postAttackPauseTime = 2;
     public Transform detectionPoint;
     public LayerMask playerLayer;
 
     private float attackCooldownTimer;
     private int facingDirection = -1;
     private EnemyState enemyState;
+    private bool isPostAttackPausing = false;
 
     private Rigidbody2D rb;
     private Transform target;
     private Animator anim;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,10 +28,9 @@ public class Enemy_Movement : MonoBehaviour
         ChangeState(EnemyState.Idle);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (enemyState != EnemyState.Knockback)
+        if (enemyState != EnemyState.Knockback && !isPostAttackPausing)
         {
             CheckForPlayer();
             if (attackCooldownTimer > 0)
@@ -43,7 +43,6 @@ public class Enemy_Movement : MonoBehaviour
             }
             else if (enemyState == EnemyState.Attacking)
             {
-                //Do attack
                 rb.velocity = Vector2.zero;
             }
         }
@@ -62,7 +61,7 @@ public class Enemy_Movement : MonoBehaviour
 
     private void Flip()
     {
-        facingDirection *= -1; // Toggle facing direction
+        facingDirection *= -1;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
@@ -78,38 +77,63 @@ public class Enemy_Movement : MonoBehaviour
 
             if (distanceToTarget <= attackRange && attackCooldownTimer <= 0)
             {
-                // Attack if within range and cooldown is ready
                 attackCooldownTimer = attackCooldown;
                 ChangeState(EnemyState.Attacking);
+                StartCoroutine(PostAttackPause());
             }
             else if (distanceToTarget > attackRange && enemyState != EnemyState.Attacking)
             {
-                // Chase if out of attack range
                 ChangeState(EnemyState.Chasing);
             }
         }
         else
         {
-            // No player detected, return to idle
             rb.velocity = Vector2.zero;
             ChangeState(EnemyState.Idle);
         }
     }
 
+    private IEnumerator PostAttackPause()
+    {
+        isPostAttackPausing = true;
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(postAttackPauseTime);
+        
+        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, playerLayer);
+        
+        if (hits.Length > 0)
+        {
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+            
+            if (distanceToTarget <= attackRange)
+            {
+                ChangeState(EnemyState.Attacking);
+            }
+            else
+            {
+                ChangeState(EnemyState.Chasing);
+            }
+        }
+        else
+        {
+            ChangeState(EnemyState.Idle);
+        }
+
+        isPostAttackPausing = false;
+    }
 
     public void ChangeState(EnemyState newState)
     {
-        //exit the current animation
         if (enemyState == EnemyState.Idle)
             anim.SetBool("isIdle", false);
         else if (enemyState == EnemyState.Chasing)
             anim.SetBool("isChasing", false);
         else if (enemyState == EnemyState.Attacking)
             anim.SetBool("isAttacking", false);
-        //update current animation
+
         enemyState = newState;
 
-        //update the current animation
         if (enemyState == EnemyState.Idle)
             anim.SetBool("isIdle", true);
         else if (enemyState == EnemyState.Chasing)
