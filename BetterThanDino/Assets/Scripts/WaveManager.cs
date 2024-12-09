@@ -29,7 +29,7 @@ public class WaveManager : MonoBehaviour
 {
     [Header("Wave Progression Settings")]
     public float totalWaveDuration = 30f;
-    public float spawnRate = 1.0f;
+    public float spawnRate = 0.5f;
 
     [Header("Spawn Points")]
     public Transform[] spawnPoints;
