@@ -3,8 +3,8 @@ using UnityEngine;
 public class FireballGenerate : MonoBehaviour
 {
     public GameObject fireballPrefab; 
-    public float spawnInterval = 2f; // Generation interval
-    public float spawnRange = 10f; // Range of generated positions
+    public float spawnInterval = 10f; // Generation interval
+    public float spawnRange = 400f; // Range of generated positions
 
     private float timer;
 
