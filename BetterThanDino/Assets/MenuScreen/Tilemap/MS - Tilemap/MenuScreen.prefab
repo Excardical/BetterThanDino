@@ -4397,6 +4397,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 78, y: -9, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1147
+      m_TileSpriteIndex: 1147
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 17, y: -8, z: 0}
     second:
       serializedVersion: 2
@@ -13853,6 +13863,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 5c4a7120007d6bf43b66ced7d6f537cf, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ef436e139e6f8254995b9e9aacbfd72f, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 3947f0a1ba198594ca13f6db9f8449c3, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: -1697564130, guid: f1266b15b68c34c46a7b4e07aa05ac99, type: 3}
@@ -16148,8 +16160,10 @@ Tilemap:
     m_Data: {fileID: -1070629615, guid: ee840f0bd62c7924d94bb29f17322856, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -810248619, guid: ee840f0bd62c7924d94bb29f17322856, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 545095488, guid: 7f8068a94096c754e9de6e6339dfcd3e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1147
+  - m_RefCount: 1148
     m_Data:
       e00: 1
       e01: 0
@@ -16168,13 +16182,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1147
+  - m_RefCount: 1148
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -2, y: -24, z: 0}
-  m_Size: {x: 77, y: 34, z: 1}
+  m_Size: {x: 81, y: 34, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -16243,7 +16257,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &2440729162535757352
+--- !u!114 &1438039748203879341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
