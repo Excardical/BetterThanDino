@@ -1257,35 +1257,15 @@ GameObject:
   - component: {fileID: 445709341}
   - component: {fileID: 445709340}
   - component: {fileID: 445709339}
-  - component: {fileID: 445709337}
+  - component: {fileID: 445709343}
+  - component: {fileID: 445709349}
   m_Layer: 7
   m_Name: GoblinReaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!95 &445709337
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445709336}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49e748191a6162c4bb96007ed1f04a5a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_IsActive: 1
 --- !u!50 &445709339
 Rigidbody2D:
   serializedVersion: 4
@@ -1383,13 +1363,62 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445709336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.66, y: 0, z: 0.075710855}
+  m_LocalPosition: {x: 4.55, y: -2.87, z: 0.075710855}
   m_LocalScale: {x: -0.5, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1205719915}
+  - {fileID: 1027990973}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &445709343
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445709336}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 49e748191a6162c4bb96007ed1f04a5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &445709349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445709336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10faf3727a8d6794fa875d50ccef34b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  speed: 2
+  attackRange: 3
+  playerDetectRange: 5
+  attackCooldown: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 1
+  attackPoint: {fileID: 1205719915}
+  weaponRange: 5
+  knockbackForce: 5
+  knockbackTime: 0.5
+  stunTime: 0.5
 --- !u!1 &485545453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1574,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1027990972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027990973}
+  m_Layer: 7
+  m_Name: DetectionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1027990973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027990972}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: 0, z: -0.075710855}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 445709342}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1065238759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2027,6 +2087,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
+--- !u!1 &1205719914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205719915}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1205719915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205719914}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 0, z: -0.075710855}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 445709342}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348924309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,7 +2439,6 @@ GameObject:
   - component: {fileID: 1799539738}
   - component: {fileID: 1799539742}
   - component: {fileID: 1799539741}
-  - component: {fileID: 1799539740}
   - component: {fileID: 1799539739}
   m_Layer: 7
   m_Name: Bringer of Death
@@ -2356,7 +2446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1799539733
 Rigidbody2D:
   serializedVersion: 4
@@ -2493,30 +2583,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799539731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4169c7539e66614408330c6c63b51921, type: 3}
+  m_Script: {fileID: 11500000, guid: d9cb38a324bdb0243aef1f2a3bbb568d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  attackRange: 2
-  attackCooldown: 2
-  playerDetectRange: 5
-  postAttackPauseTime: 100
-  detectionPoint: {fileID: 1439920700}
+  damage: 1
+  attackPoint: {fileID: 701798812}
+  weaponRange: 1
+  knockbackForce: 1
+  stunTime: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1799539740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799539731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c955e07b600b5c74e85c8b388f894ebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1799539741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2526,11 +2603,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799539731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5094c864c6dfd34787f6c704d185881, type: 3}
+  m_Script: {fileID: 11500000, guid: 16289b8a3e5512c46b8c9d86ae37d043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 5
-  maxHealth: 5
+  rb: {fileID: 0}
+  enemy_Movement: {fileID: 0}
 --- !u!114 &1799539742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2540,17 +2617,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799539731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af2658140498bc0468d46757928ac82e, type: 3}
+  m_Script: {fileID: 11500000, guid: 457122a9db28f604496c0d6cbc457afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  attackPoint: {fileID: 701798812}
-  weaponRange: 0
-  knockbackForce: 0
-  stunTime: 0
+  speed: 2
+  attackRange: 2
+  attackCooldown: 2
+  playerDetectRange: 5
+  postAttackPauseTime: 100
+  detectionPoint: {fileID: 1439920700}
   playerLayer:
-    serializedVersion: 2
     m_Bits: 64
+  attackCooldownTimer: 0
+  enemyState: 0
+  isPostAttackPausing: 0
+  rb: {fileID: 0}
+  target: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &1804829732
 GameObject:
   m_ObjectHideFlags: 0

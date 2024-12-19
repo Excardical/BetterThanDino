@@ -1,27 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Bringer_Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    public int currentHealth;
-    public int maxHealth;
+    public int maxHealth = 100;      // Maximum health of the enemy
+    private int currentHealth;       // Current health
+    private Animator animator;       // Reference to the Animator component
+    private bool isDead = false;     // To prevent multiple triggers
 
-    private void Start()
+    void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator not found on " + gameObject.name);
+        }
     }
 
-    public void ChangeHealth(int amount)
+    // Function to apply damage to the enemy
+    public void TakeDamage(int damage)
     {
-        currentHealth += amount;
-        if (currentHealth > maxHealth)
+        if (isDead) return;  // Ignore damage if already dead
+
+        currentHealth -= damage;
+        Debug.Log($"Enemy Health: {currentHealth}/{maxHealth}");
+
+        if (currentHealth <= 0)
         {
-            currentHealth = maxHealth;
+            Die();
         }
-        else if (currentHealth <= 0)
+    }
+
+    // Handles the death of the enemy
+    private void Die()
+    {
+        isDead = true;  // Prevent multiple death triggers
+
+        // Set the "Death" parameter in the Animator to true
+        if (animator != null)
         {
-            Destroy(gameObject);
+            animator.SetBool("Death", true);
         }
+
+        // Optionally disable enemy behaviors, colliders, etc.
+        GetComponent<Collider2D>().enabled = false; // For 2D, replace with Collider for 3D
+        this.enabled = false;  // Disable this script after death
     }
 }
