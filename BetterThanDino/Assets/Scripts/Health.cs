@@ -1,4 +1,4 @@
-    using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Health : MonoBehaviour
@@ -24,29 +24,30 @@ public class Health : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
     }
-public void TakeDamage(float _damage)
-{
-    if (invulnerable) return;
-
-    currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
-
-    if (currentHealth > 0)
+    public void TakeDamage(float _damage)
     {
-        anim.SetTrigger("hurt");
-        StartCoroutine(Invunerability());
+        if (invulnerable) return;
+        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+
+        if (currentHealth > 0)
+        {
+            anim.SetTrigger("hurt");
+            StartCoroutine(Invunerability());
+        }
+        else
+        {
+            if (!dead)
+            {
+                anim.SetTrigger("die");
+
+                //Deactivate all attached component classes
+                foreach (Behaviour component in components)
+                    component.enabled = false;
+
+                dead = true;
+            }
+        }
     }
-    else if (!dead)
-    {
-        anim.SetTrigger("die");
-
-        // Deactivate all attached component classes
-        foreach (Behaviour component in components)
-            component.enabled = false;
-
-        dead = true;
-    }
-}
-
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
@@ -64,5 +65,10 @@ public void TakeDamage(float _damage)
         }
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
+        
     }
 }
