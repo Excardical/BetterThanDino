@@ -16,6 +16,7 @@ public class EnemyBase : MonoBehaviour
     public float playerDetectRange = 5f;
     public float attackCooldown = 2f;
     public LayerMask playerLayer;
+    [SerializeField] private Vector2 detectionOffset; // New offset variable
 
     // Combat variables
     [Header("Combat Settings")]
@@ -100,8 +101,12 @@ public class EnemyBase : MonoBehaviour
     {
         if (target == null) return;
 
+        // Get direction to target
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * speed;
+
+        // Only use the x component for movement
+        Vector2 horizontalMovement = new Vector2(direction.x, 0) * speed;
+        rb.velocity = horizontalMovement;
     }
 
     // Combat
@@ -157,7 +162,8 @@ public class EnemyBase : MonoBehaviour
     {
         if (isPostAttackPausing) return;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, playerDetectRange, playerLayer);
+        Vector2 detectionPosition = (Vector2)transform.position + detectionOffset; // Calculate detection position
+        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPosition, playerDetectRange, playerLayer);
 
         if (hits.Length > 0)
         {
@@ -258,7 +264,8 @@ public class EnemyBase : MonoBehaviour
         }
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, playerDetectRange);
+        Vector2 detectionPosition = (Vector2)transform.position + detectionOffset;
+        Gizmos.DrawWireSphere(detectionPosition, playerDetectRange);
     }
 }
 

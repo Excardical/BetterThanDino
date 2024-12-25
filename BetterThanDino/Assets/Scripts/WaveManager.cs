@@ -44,6 +44,8 @@ public class WaveManager : MonoBehaviour
     // Wave state variables
     private float currentTime;
     private bool isWaveActive = false;
+    private bool isWaveComplete = false;
+    private bool isSpawningEnemies = false;
     private List<int> triggeredMilestones = new List<int>();
 
     void Start()
@@ -71,7 +73,7 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        if (isWaveActive)
+        if (isWaveActive && !isWaveComplete && !isSpawningEnemies)
         {
             UpdateWaveProgression();
         }
@@ -81,6 +83,8 @@ public class WaveManager : MonoBehaviour
     {
         currentTime = 0;
         isWaveActive = true;
+        isWaveComplete = false;
+        isSpawningEnemies = false;
         triggeredMilestones.Clear();
     }
 
@@ -106,11 +110,12 @@ public class WaveManager : MonoBehaviour
             // Check and spawn enemies at milestones
             CheckMilestoneSpawns(progressPercentage);
 
-            // Reset wave when complete
-            if (progressPercentage >= 100)
+            // Mark wave as complete when reaching 100%
+            if (progressPercentage >= 100 && !isWaveComplete)
             {
+                isWaveComplete = true;
                 isWaveActive = false;
-                StartWaveProgression();
+                OnWaveComplete();
             }
         }
     }
@@ -135,6 +140,8 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnEnemiesRoutine(EnemySpawnData[] enemySpawns)
     {
+        isSpawningEnemies = true;
+
         foreach (var enemySpawn in enemySpawns)
         {
             for (int i = 0; i < enemySpawn.enemyCount; i++)
@@ -142,7 +149,6 @@ public class WaveManager : MonoBehaviour
                 // Spawn enemies at random spawn points
                 if (spawnPoints.Length > 0 && enemySpawn.enemyPrefab != null)
                 {
-                    // Explicitly use UnityEngine.Random
                     Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
                     Instantiate(enemySpawn.enemyPrefab, spawnPoint.position, Quaternion.identity);
                 }
@@ -155,6 +161,14 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(spawnRate);
             }
         }
+
+        isSpawningEnemies = false;
+    }
+
+    void OnWaveComplete()
+    {
+        // You can add any wave completion logic here
+        Debug.Log("Wave Complete!");
     }
 
     // Optional methods for additional control
@@ -165,7 +179,15 @@ public class WaveManager : MonoBehaviour
 
     public void ResumeWave()
     {
-        isWaveActive = true;
+        if (!isWaveComplete)
+        {
+            isWaveActive = true;
+        }
+    }
+
+    public void RestartWave()
+    {
+        StartWaveProgression();
     }
 
     public void SetWaveDuration(float duration)
