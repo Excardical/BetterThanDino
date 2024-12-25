@@ -93,7 +93,8 @@ public class EnemyBase : MonoBehaviour
     // Movement
     private void MoveLeft()
     {
-        rb.velocity = Vector2.left * speed;
+        Vector2 currentVelocity = rb.velocity;
+        rb.velocity = new Vector2(-speed, currentVelocity.y); // Keep existing y velocity
         ChangeState(EnemyState.MoveLeft);
     }
 
@@ -101,13 +102,12 @@ public class EnemyBase : MonoBehaviour
     {
         if (target == null) return;
 
-        // Get direction to target
         Vector2 direction = (target.position - transform.position).normalized;
 
-        // Only use the x component for movement
-        Vector2 horizontalMovement = new Vector2(direction.x, 0) * speed;
-        rb.velocity = horizontalMovement;
+        // Preserve the current y velocity while chasing horizontally
+        rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
     }
+
 
     // Combat
     public void Attack()
