@@ -40,38 +40,53 @@ public class EnemyBase : MonoBehaviour
     {
         // Initialization
         currentHealth = maxHealth;
+
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D component is missing!");
+        }
+
         anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            Debug.LogError("Animator component is missing!");
+        }
+
+        if (attackPoint == null)
+        {
+            Debug.LogError("AttackPoint Transform is not assigned in the Inspector!");
+        }
+
         ChangeState(EnemyState.MoveLeft);
     }
 
     public void Update()
     {
-        if (enemyState != EnemyState.Knockback)
+        if (enemyState == EnemyState.Knockback) return;
+
+        if (attackCooldownTimer > 0)
         {
-            if (attackCooldownTimer > 0)
-            {
-                attackCooldownTimer -= Time.deltaTime;
-            }
-
-            switch (enemyState)
-            {
-                case EnemyState.Idle:
-                    rb.velocity = Vector2.zero;
-                    break;
-                case EnemyState.Chasing:
-                    Chase();
-                    break;
-                case EnemyState.Attacking:
-                    rb.velocity = Vector2.zero;
-                    break;
-                case EnemyState.MoveLeft:
-                    MoveLeft();
-                    break;
-            }
-
-            CheckForPlayer();
+            attackCooldownTimer -= Time.deltaTime;
         }
+
+        switch (enemyState)
+        {
+            case EnemyState.Idle:
+                rb.velocity = Vector2.zero;
+                break;
+            case EnemyState.Chasing:
+                Chase();
+                break;
+            case EnemyState.Attacking:
+                rb.velocity = Vector2.zero;
+                break;
+            case EnemyState.MoveLeft:
+                MoveLeft();
+                break;
+        }
+
+        CheckForPlayer();
     }
 
     // Movement
@@ -83,6 +98,8 @@ public class EnemyBase : MonoBehaviour
 
     private void Chase()
     {
+        if (target == null) return;
+
         Vector2 direction = (target.position - transform.position).normalized;
         rb.velocity = direction * speed;
     }
@@ -90,17 +107,21 @@ public class EnemyBase : MonoBehaviour
     // Combat
     public void Attack()
     {
-        Debug.Log("Enemy Attack method called");
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer);
-        Debug.Log($"Found {hits.Length} player hits");
-
-        if (hits.Length > 0)
+        if (attackPoint == null)
         {
-            var playerHealth = hits[0].GetComponent<PlayerHealth>();
-            Debug.Log($"PlayerHealth component found: {playerHealth != null}");
-        
+            Debug.LogError("AttackPoint is not assigned. Cannot perform attack!");
+            return;
+        }
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer);
+
+        foreach (var hit in hits)
+        {
+            PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
             playerHealth?.ChangeHealth(-damage);
-            hits[0].GetComponent<PlayerMovement>()?.Knockback(transform, knockbackForce, knockbackTime);
+
+            PlayerMovement playerMovement = hit.GetComponent<PlayerMovement>();
+            playerMovement?.Knockback(transform, knockbackForce, knockbackTime);
         }
     }
 
@@ -108,21 +129,19 @@ public class EnemyBase : MonoBehaviour
     public void ApplyKnockback(Transform playerTransform)
     {
         if (currentHealth <= 0) return;
-        
+
         ChangeState(EnemyState.Knockback);
         StartCoroutine(KnockbackRoutine(playerTransform));
     }
 
     private IEnumerator KnockbackRoutine(Transform playerTransform)
     {
-        if (currentHealth <= 0) yield break; // Exit if the enemy is already dead
+        if (playerTransform == null) yield break;
 
         Vector2 direction = (transform.position - playerTransform.position).normalized;
         rb.velocity = direction * knockbackForce;
 
         yield return new WaitForSeconds(knockbackTime);
-
-        if (currentHealth <= 0) yield break; // Exit if the enemy dies during knockback
 
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(stunTime);
@@ -152,12 +171,12 @@ public class EnemyBase : MonoBehaviour
                 attackCooldownTimer = attackCooldown;
                 StartCoroutine(PostAttackPause());
             }
-            else if (distanceToTarget > attackRange && enemyState != EnemyState.Attacking)
+            else if (distanceToTarget > attackRange)
             {
                 ChangeState(EnemyState.Chasing);
             }
         }
-        else if (enemyState != EnemyState.Attacking)
+        else
         {
             ChangeState(EnemyState.MoveLeft);
         }
@@ -167,12 +186,12 @@ public class EnemyBase : MonoBehaviour
     {
         isPostAttackPausing = true;
 
-        // Wait for attack animation to complete
-        float attackAnimationLength = anim.GetCurrentAnimatorStateInfo(0).length;
+        float attackAnimationLength = anim != null ? anim.GetCurrentAnimatorStateInfo(0).length : 0;
         yield return new WaitForSeconds(attackAnimationLength);
 
         ChangeState(EnemyState.Idle);
-        yield return new WaitForSeconds(0.5f); // Slight delay for recovery
+        yield return new WaitForSeconds(0.5f);
+
         isPostAttackPausing = false;
     }
 
@@ -190,16 +209,10 @@ public class EnemyBase : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
-    
+
     public virtual void TakeDamage(int damage)
     {
-        if (currentHealth <= 0) return;
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        ChangeHealth(-damage);
     }
 
     private void Die()
@@ -210,9 +223,12 @@ public class EnemyBase : MonoBehaviour
     // State management
     public void ChangeState(EnemyState newState)
     {
-        anim?.SetBool("isIdle", false);
-        anim?.SetBool("isChasing", false);
-        anim?.SetBool("isAttacking", false);
+        if (anim != null)
+        {
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isChasing", false);
+            anim.SetBool("isAttacking", false);
+        }
 
         enemyState = newState;
 
@@ -235,9 +251,14 @@ public class EnemyBase : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
+        }
+
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, playerDetectRange);
-        Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
     }
 }
 

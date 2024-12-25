@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 3611843093579295133}
   - component: {fileID: 3611843093579295122}
   - component: {fileID: 3611843093579295129}
-  - component: {fileID: 3611843093579295128}
   - component: {fileID: 3611843093579295131}
-  - component: {fileID: 3611843093579295130}
+  - component: {fileID: 7979726024638881571}
   m_Layer: 7
   m_Name: GoblinTorch
   m_TagString: Untagged
@@ -171,26 +170,6 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &3611843093579295128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611843093579295123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 457122a9db28f604496c0d6cbc457afd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  attackRange: 1.2
-  attackCooldown: 2
-  playerDetectRange: 1.8
-  detectionPoint: {fileID: 3611843094237630858}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &3611843093579295131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 5
   maxHealth: 5
---- !u!114 &3611843093579295130
+--- !u!114 &7979726024638881571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,9 +193,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3611843093579295123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16289b8a3e5512c46b8c9d86ae37d043, type: 3}
+  m_Script: {fileID: 11500000, guid: d6af52a14f273aa408b24efc2d7b0498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
+  speed: 2
+  attackRange: 2
+  playerDetectRange: 5
+  attackCooldown: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 1
+  attackPoint: {fileID: 3611843094195955922}
+  weaponRange: 1
+  knockbackForce: 5
+  knockbackTime: 0.5
+  stunTime: 0.5
 --- !u!1 &3611843094195955923
 GameObject:
   m_ObjectHideFlags: 0
