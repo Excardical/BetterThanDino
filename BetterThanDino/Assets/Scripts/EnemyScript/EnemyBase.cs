@@ -23,9 +23,10 @@ public class EnemyBase : MonoBehaviour
     public int damage = 1;
     public Transform attackPoint;
     public float weaponRange = 1f;
-    public float knockbackForce = 5f;
     public float knockbackTime = 0.5f;
     public float stunTime = 0.5f;
+    public float attackKnockbackForce = 5f; // Force applied TO player
+    public float receivedKnockbackForce = 5f; // Force applied TO enemy
 
     // State management
     private EnemyState enemyState;
@@ -126,7 +127,7 @@ public class EnemyBase : MonoBehaviour
             playerHealth?.ChangeHealth(-damage);
 
             PlayerMovement playerMovement = hit.GetComponent<PlayerMovement>();
-            playerMovement?.Knockback(transform, knockbackForce, knockbackTime);
+            playerMovement?.Knockback(transform, attackKnockbackForce, knockbackTime);
         }
     }
 
@@ -144,7 +145,7 @@ public class EnemyBase : MonoBehaviour
         if (playerTransform == null) yield break;
 
         Vector2 direction = (transform.position - playerTransform.position).normalized;
-        rb.velocity = direction * knockbackForce;
+        rb.velocity = direction * receivedKnockbackForce;
 
         yield return new WaitForSeconds(knockbackTime);
 
