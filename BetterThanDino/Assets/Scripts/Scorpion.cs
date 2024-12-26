@@ -15,7 +15,7 @@ public class Scorpion : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        enemyPatrol = GetComponentInParent<ScorpioPatrol>();
+        enemyPatrol = GetComponent<ScorpioPatrol>();
     }
     private void Update()
     {
