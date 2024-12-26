@@ -221,7 +221,7 @@ MonoBehaviour:
   knockbackForce: 5
   knockbackTime: 0.15
   stunTime: 0.2
-  speed: 5
+  speed: 7
   maxHealth: 10
   currentHealth: 10
 --- !u!1 &3427980062503927788
