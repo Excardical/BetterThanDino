@@ -1,17 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingFireball : MonoBehaviour
 {
     public float speed = 5f; // Fireball move speed
-
-    private Vector3 direction;
-
+    private Vector3 direction; // Fire falling direction
+    
+    // Start is called before the first frame update
     void Start()
     {
         // Fixed direction of positive 45° drop
         direction = Quaternion.Euler(0, 0, -45f) * Vector3.down;
     }
 
+    // Update is called once per frame
     void Update()
     {
         // Move the fireball in the direction
@@ -22,11 +25,13 @@ public class FallingFireball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Touching the player's logic
             Debug.Log("The player is hit!");
+            Destroy(gameObject);
         }
-
-        // Destruction of fireballs after collision
-        Destroy(gameObject);
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("The fireball hit the ground!");
+            Destroy(gameObject);
+        }
     }
 }
