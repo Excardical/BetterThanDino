@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1657219905
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1391824295, guid: 5b9db068915bf6c46ae74553830aa66c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -208,9 +208,10 @@ MonoBehaviour:
   damage: 1
   attackPoint: {fileID: 3611843094195955922}
   weaponRange: 1
-  knockbackForce: 5
   knockbackTime: 0.5
   stunTime: 0.5
+  attackKnockbackForce: 5
+  receivedKnockbackForce: 5
 --- !u!1 &3611843094195955923
 GameObject:
   m_ObjectHideFlags: 0
