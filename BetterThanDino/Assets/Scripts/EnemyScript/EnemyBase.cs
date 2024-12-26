@@ -16,6 +16,7 @@ public class EnemyBase : MonoBehaviour
     public float playerDetectRange = 5f;
     public float attackCooldown = 2f;
     public LayerMask playerLayer;
+    public LayerMask baseLayer;
     [SerializeField] private Vector2 detectionOffset; // New offset variable
 
     // Combat variables
@@ -119,15 +120,25 @@ public class EnemyBase : MonoBehaviour
             return;
         }
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer | baseLayer);
 
         foreach (var hit in hits)
         {
-            PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
-            playerHealth?.ChangeHealth(-damage);
+            Debug.Log("Attacking: " + hit.gameObject.name); // Debug log to show which object is being attacked
 
-            PlayerMovement playerMovement = hit.GetComponent<PlayerMovement>();
-            playerMovement?.Knockback(transform, attackKnockbackForce, knockbackTime);
+            PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-damage);
+                PlayerMovement playerMovement = hit.GetComponent<PlayerMovement>();
+                playerMovement?.Knockback(transform, attackKnockbackForce, knockbackTime);
+            }
+
+            BaseHealth baseHealth = hit.GetComponent<BaseHealth>();
+            if (baseHealth != null)
+            {
+                baseHealth.ChangeHealth(-damage);
+            }
         }
     }
 
@@ -163,23 +174,27 @@ public class EnemyBase : MonoBehaviour
     {
         if (isPostAttackPausing) return;
 
-        Vector2 detectionPosition = (Vector2)transform.position + detectionOffset; // Calculate detection position
-        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPosition, playerDetectRange, playerLayer);
+        Vector2 detectionPosition = (Vector2)transform.position + detectionOffset;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPosition, playerDetectRange, playerLayer | baseLayer);
 
         if (hits.Length > 0)
         {
+            Debug.Log("Detected target: " + hits[0].gameObject.name); // Debug log to show detected target
             target = hits[0].transform;
 
             float distanceToTarget = Vector2.Distance(transform.position, target.position);
+            Debug.Log($"Distance to target ({target.name}): {distanceToTarget}, Attack Range: {attackRange}");
 
             if (distanceToTarget <= attackRange && attackCooldownTimer <= 0)
             {
+                Debug.Log($"Enemy is attacking target: {target.name}");
                 ChangeState(EnemyState.Attacking);
                 attackCooldownTimer = attackCooldown;
                 StartCoroutine(PostAttackPause());
             }
             else if (distanceToTarget > attackRange)
             {
+                Debug.Log($"Target ({target.name}) is out of attack range. Chasing.");
                 ChangeState(EnemyState.Chasing);
             }
         }
@@ -259,18 +274,18 @@ public class EnemyBase : MonoBehaviour
                 break;
         }
     }
-    
+
     // Addition for Child Script Functions
     protected virtual void OnIdleStateEnter()
     {
         // Empty base implementation
     }
-    
+
     public virtual void TriggerExplosion()
     {
         // Empty base implementation
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint != null)
@@ -292,6 +307,6 @@ public enum EnemyState
     Chasing,
     Attacking,
     Knockback,
-    MoveLeft, 
+    MoveLeft,
     Death
 }
