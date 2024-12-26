@@ -905,11 +905,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: ebaab023-c292-4c44-9dbc-b127a0076bd0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: BetterThanDino
+  organizationId: cnhronaldo
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
