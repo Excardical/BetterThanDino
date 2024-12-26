@@ -222,7 +222,7 @@ public class EnemyBase : MonoBehaviour
         ChangeHealth(-damage);
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }
@@ -254,14 +254,23 @@ public class EnemyBase : MonoBehaviour
             case EnemyState.MoveLeft:
                 anim?.SetBool("isChasing", true);
                 break;
+            case EnemyState.Death:
+                // Death is handled via trigger 
+                break;
         }
     }
     
+    // Addition for Child Script Functions
     protected virtual void OnIdleStateEnter()
     {
-        // Base implementation can be empty
+        // Empty base implementation
     }
-
+    
+    public virtual void TriggerExplosion()
+    {
+        // Empty base implementation
+    }
+    
     private void OnDrawGizmosSelected()
     {
         if (attackPoint != null)
@@ -283,5 +292,6 @@ public enum EnemyState
     Chasing,
     Attacking,
     Knockback,
-    MoveLeft
+    MoveLeft, 
+    Death
 }
