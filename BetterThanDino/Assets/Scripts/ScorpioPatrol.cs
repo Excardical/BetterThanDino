@@ -24,6 +24,7 @@ public class ScorpioPatrol : MonoBehaviour
     private void Awake()
     {
         initScale = enemy.localScale;
+        movingLeft=true;
     }
     private void OnDisable()
     {
@@ -63,7 +64,7 @@ public class ScorpioPatrol : MonoBehaviour
         anim.SetBool("moving", true);
 
         //Make enemy face direction
-        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction*-1,
+        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * -_direction,
             initScale.y, initScale.z);
 
         //Move in that direction
