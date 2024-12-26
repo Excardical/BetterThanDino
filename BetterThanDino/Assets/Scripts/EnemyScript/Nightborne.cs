@@ -11,20 +11,14 @@ public class Nightborne : EnemyBase
     [SerializeField] private float destroyDelay = 2f; // Time after explosion before destroying
     private bool hasDied = false;
     private Animator animator;
-    private Rigidbody2D rb;
     
     void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         if (animator == null)
         {
             Debug.LogError("Animator component missing on Nightborne!");
-        }
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody2D component missing on Nightborne!");
         }
     }
 
@@ -52,12 +46,13 @@ public class Nightborne : EnemyBase
             collider.isTrigger = true;
         }
         
-        // Freeze the rigidbody
-        if (rb != null)
+        // Get the base class's rb reference
+        var baseRb = GetComponent<Rigidbody2D>();
+        if (baseRb != null)
         {
-            rb.velocity = Vector2.zero;
-            rb.bodyType = RigidbodyType2D.Kinematic; // Switch to Kinematic to prevent falling
-            rb.simulated = false; // Disable physics simulation
+            baseRb.velocity = Vector2.zero;
+            baseRb.bodyType = RigidbodyType2D.Kinematic; // Switch to Kinematic to prevent falling
+            baseRb.simulated = false; // Disable physics simulation
         }
         
         // Trigger death animation
