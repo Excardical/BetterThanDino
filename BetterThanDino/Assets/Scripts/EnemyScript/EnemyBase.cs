@@ -242,6 +242,7 @@ public class EnemyBase : MonoBehaviour
         {
             case EnemyState.Idle:
                 anim?.SetBool("isIdle", true);
+                OnIdleStateEnter();
                 break;
             case EnemyState.Chasing:
                 anim?.SetBool("isChasing", true);
@@ -253,6 +254,11 @@ public class EnemyBase : MonoBehaviour
                 anim?.SetBool("isChasing", true);
                 break;
         }
+    }
+    
+    protected virtual void OnIdleStateEnter()
+    {
+        // Base implementation can be empty
     }
 
     private void OnDrawGizmosSelected()

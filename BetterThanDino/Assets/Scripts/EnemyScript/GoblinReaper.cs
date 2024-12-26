@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GoblinReaper : EnemyBase
 {
-    // Start is called before the first frame update
+    [SerializeField] private int idleDamage = 1; // Amount of damage to take when idle
+
     void Start()
     {
         base.Start();
     }
 
-    // Update is called once per frame
     void Update()
     {
         base.Update();
+    }
+
+    protected override void OnIdleStateEnter()
+    {
+        base.OnIdleStateEnter();
+        TakeDamage(idleDamage); // Use the existing TakeDamage method from EnemyBase
+        Debug.Log("Goblin Reaper take damage from idle");
     }
 }
