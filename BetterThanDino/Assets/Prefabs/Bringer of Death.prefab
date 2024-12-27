@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3812671550851568921}
   m_Layer: 7
   m_Name: Bringer of Death
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1657219905
-  m_SortingLayer: 6
+  m_SortingLayerID: 2022651341
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1064796118, guid: a137f244fe6e8ab45a90392228709fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -193,12 +193,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   speed: 3
-  attackRange: 3
+  attackRange: 4
   playerDetectRange: 5
   attackCooldown: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  baseLayer:
+    serializedVersion: 2
+    m_Bits: 0
   detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 3812671551949013150}
