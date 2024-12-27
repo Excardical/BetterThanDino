@@ -157,6 +157,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  baseLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8190488818852416180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8190488820464735465}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.3, y: -0.64412904, z: 0.27822545}
+  m_LocalPosition: {x: -36.98, y: -0.64412904, z: 0.27822545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
