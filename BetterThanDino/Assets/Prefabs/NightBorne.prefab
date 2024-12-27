@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4748147070440212018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.11, y: -3.15, z: 0.009549115}
-  m_LocalScale: {x: -2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: -1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4748147071810879148}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 7
   speed: 3
-  attackRange: 4
+  attackRange: 5
   playerDetectRange: 7
   attackCooldown: 1.8
   playerLayer:
@@ -171,10 +171,13 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 0
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 4748147071810879148}
-  weaponRange: 3.2
+  weaponRange: 2
   knockbackTime: 0.1
   stunTime: 0.1
   attackKnockbackForce: 4

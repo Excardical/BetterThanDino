@@ -193,13 +193,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   speed: 3
-  attackRange: 4
+  attackRange: 5
   playerDetectRange: 5
   attackCooldown: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   baseLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  allyLayer:
     serializedVersion: 2
     m_Bits: 0
   detectionOffset: {x: 0, y: 0}

@@ -17,6 +17,7 @@ public class EnemyBase : MonoBehaviour
     public float attackCooldown = 2f;
     public LayerMask playerLayer;
     public LayerMask baseLayer;
+    public LayerMask allyLayer;
     [SerializeField] private Vector2 detectionOffset; // New offset variable
 
     // Combat variables
@@ -138,6 +139,13 @@ public class EnemyBase : MonoBehaviour
             if (baseHealth != null)
             {
                 baseHealth.ChangeHealth(-damage);
+            }
+            
+            // Add check for AllyBase
+            AllyBase ally = hit.GetComponent<AllyBase>();
+            if (ally != null)
+            {
+                ally.TakeDamage(damage, transform, attackKnockbackForce, stunTime);
             }
         }
     }

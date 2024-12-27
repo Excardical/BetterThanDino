@@ -233,6 +233,9 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 0
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   detectionOffset: {x: 0, y: 0}
   damage: 4
   attackPoint: {fileID: 1437476697538882210}
