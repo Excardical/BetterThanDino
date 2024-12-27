@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1657219905
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -1167780859, guid: 5be283c39a4594f4eaa7b69518b24a4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -219,20 +219,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8189739790931402696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10faf3727a8d6794fa875d50ccef34b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7392641bc86a32c42ae03abf3de0f79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  speed: 4
-  attackRange: 2.5
-  playerDetectRange: 7
+  maxHealth: 10
+  speed: 2
+  attackRange: 2
+  playerDetectRange: 5
   attackCooldown: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  baseLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 8189739790306128059}
-  weaponRange: 2
-  knockbackForce: 5
-  knockbackTime: 0.3
+  weaponRange: 1
+  knockbackTime: 0.5
   stunTime: 0.5
+  attackKnockbackForce: 5
+  receivedKnockbackForce: 5
+  idleDamage: 1
+  slowedSpeed: 1
+  slowDuration: 2
