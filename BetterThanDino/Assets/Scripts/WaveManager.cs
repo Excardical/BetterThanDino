@@ -48,6 +48,7 @@ public class WaveManager : MonoBehaviour
     private bool isSpawningEnemies = false;
     private List<int> triggeredMilestones = new List<int>();
     private List<GameObject> activeEnemies = new List<GameObject>();
+    private bool waitingForSpawn = false;
 
     void Start()
     {
@@ -69,12 +70,9 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        if (isWaveActive && !isWaveComplete)
+        if (isWaveActive && !isWaveComplete && !waitingForSpawn)
         {
-            if (!isSpawningEnemies && AreAllEnemiesCleared())
-            {
-                UpdateWaveProgression();
-            }
+            UpdateWaveProgression();
         }
     }
 
@@ -98,6 +96,7 @@ public class WaveManager : MonoBehaviour
         isWaveActive = true;
         isWaveComplete = false;
         isSpawningEnemies = false;
+        waitingForSpawn = false;
         triggeredMilestones.Clear();
         activeEnemies.Clear();
     }
@@ -134,8 +133,10 @@ public class WaveManager : MonoBehaviour
         {
             if (!triggeredMilestones.Contains(i) && progressPercentage >= waveMilestones[i].triggerPercentage)
             {
+                waitingForSpawn = true;  // Pause the slider
                 SpawnMilestoneEnemies(waveMilestones[i]);
                 triggeredMilestones.Add(i);
+                break;  // Only process one milestone at a time
             }
         }
     }
@@ -170,6 +171,7 @@ public class WaveManager : MonoBehaviour
         }
 
         isSpawningEnemies = false;
+        waitingForSpawn = false;  // Resume the slider after spawning is complete
     }
 
     void OnWaveComplete()
