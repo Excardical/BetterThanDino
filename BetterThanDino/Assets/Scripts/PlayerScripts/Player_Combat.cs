@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,16 @@ public class Player_Combat : MonoBehaviour
     public LayerMask enemyLayer;
     public Animator anim;
     private float timer;
+    
+    public AudioClip attackSound; // Attack sound effect
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        // Set up the AudioSource component
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     private void Update()
     {
@@ -22,6 +33,8 @@ public class Player_Combat : MonoBehaviour
         if (timer <= 0)
         {
             anim.SetBool("isAttacking", true);
+            // Play the attack sound
+            PlayAttackSound();
             timer = StatsManager.Instance.cooldown;
         }
     }
@@ -49,6 +62,14 @@ public class Player_Combat : MonoBehaviour
         anim.SetBool("isAttacking", false);
     }
 
+    private void PlayAttackSound()
+    {
+        if (attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
+    }
+    
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;

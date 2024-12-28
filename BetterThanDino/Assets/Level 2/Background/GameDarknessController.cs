@@ -8,12 +8,20 @@ public class GameDarknessController : MonoBehaviour
     public float darknessDuration = 3f; // How long the darkness lasts
     public float fadeDuration = 1f; // How long it takes to fade in/out
 
+    public AudioClip fadeInSound; // Sound effect for fading in (darkness starts)
+    public AudioClip fadeOutSound; // Sound effect for fading out (darkness ends)
+    private AudioSource audioSource;
+
     private Coroutine darknessRoutine;
 
     void Start()
     {
         // Ensure the overlay starts fully transparent
         darknessOverlay.color = new Color(0, 0, 0, 0);
+
+        // Set up the AudioSource component
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
         // Start the darkness cycle
         StartCoroutine(DarknessCycle());
@@ -24,8 +32,16 @@ public class GameDarknessController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval);
+            
+            // Play fade-in sound
+            PlaySound(fadeInSound);
+            
             yield return FadeDarkness(1f); // Fade in to full darkness
             yield return new WaitForSeconds(darknessDuration);
+            
+            // Play fade-out sound
+            PlaySound(fadeOutSound);
+            
             yield return FadeDarkness(0f); // Fade out to transparency
         }
     }
@@ -48,5 +64,13 @@ public class GameDarknessController : MonoBehaviour
 
         // Ensure final alpha value is set
         darknessOverlay.color = new Color(0, 0, 0, targetAlpha);
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }

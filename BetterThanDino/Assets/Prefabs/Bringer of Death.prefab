@@ -213,6 +213,7 @@ MonoBehaviour:
   stunTime: 0.5
   attackKnockbackForce: 5
   receivedKnockbackForce: 5
+  attackSound: {fileID: 8300000, guid: e511ea61557733b44863cce7305f5f97, type: 3}
 --- !u!1 &3812671551949013145
 GameObject:
   m_ObjectHideFlags: 0

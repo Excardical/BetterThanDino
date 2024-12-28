@@ -1021,6 +1021,8 @@ MonoBehaviour:
   interval: 3
   darknessDuration: 1
   fadeDuration: 1
+  fadeInSound: {fileID: 8300000, guid: d060c5abd9923a542b1fb0821ba5563b, type: 3}
+  fadeOutSound: {fileID: 0}
 --- !u!114 &358782538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485545454}
+  - component: {fileID: 485545455}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1182,6 +1185,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &485545455
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485545453}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b1f856b018764f844825ac80b36658cd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &527273082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,82 +2982,6 @@ MonoBehaviour:
       enemyCount: 1
     - enemyPrefab: {fileID: 3812671550851568913, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
       enemyCount: 1
-  - triggerPercentage: 25
-    enemySpawns:
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 3812671550851568913, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 1437476698472087815, guid: d08528be063502947aeac80cb14e2884, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-  - triggerPercentage: 50
-    enemySpawns:
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 3
-    - enemyPrefab: {fileID: 1437476698472087815, guid: d08528be063502947aeac80cb14e2884, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 2
-  - triggerPercentage: 75
-    enemySpawns:
-    - enemyPrefab: {fileID: 3812671550851568913, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
-      enemyCount: 3
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 2
-  - triggerPercentage: 100
-    enemySpawns:
-    - enemyPrefab: {fileID: 1437476698472087815, guid: d08528be063502947aeac80cb14e2884, type: 3}
-      enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
-      enemyCount: 1
 --- !u!4 &1011564127
 Transform:
   m_ObjectHideFlags: 0
@@ -3205,14 +3228,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3427980061937095560, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
-      propertyPath: cooldown
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427980061937095560, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
-      propertyPath: weaponRange
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3427980061937095562, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
       propertyPath: healthText
       value: 
@@ -3268,10 +3283,6 @@ PrefabInstance:
     - target: {fileID: 3427980061937095569, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427980061937095569, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2ccf86b0acd1c419082fbbf0fd91d7, type: 3}
@@ -4481,11 +4492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6312680803899020386, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.67
+      value: -82.48
       objectReference: {fileID: 0}
     - target: {fileID: 6312680803899020386, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.68
+      value: 20.65
       objectReference: {fileID: 0}
     - target: {fileID: 6312680803899020386, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
       propertyPath: m_LocalPosition.z

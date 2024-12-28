@@ -39,6 +39,11 @@ public class EnemyBase : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
     private Animator anim;
+    
+    // Sound Management
+    [Header("Audio Settings")]
+    public AudioClip attackSound;
+    private AudioSource audioSource;
 
     public void Start()
     {
@@ -61,6 +66,9 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.LogError("AttackPoint Transform is not assigned in the Inspector!");
         }
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
         ChangeState(EnemyState.MoveLeft);
     }
@@ -124,18 +132,10 @@ public class EnemyBase : MonoBehaviour
     // Combat
     public void Attack()
     {
-        if (attackPoint == null)
-        {
-            Debug.LogError("AttackPoint is not assigned. Cannot perform attack!");
-            return;
-        }
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer | baseLayer);
 
         foreach (var hit in hits)
         {
-            Debug.Log("Attacking: " + hit.gameObject.name); // Debug log to show which object is being attacked
-
             PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
@@ -156,6 +156,8 @@ public class EnemyBase : MonoBehaviour
             {
                 ally.TakeDamage(damage, transform, attackKnockbackForce, stunTime);
             }
+
+            PlayAttackSound();
         }
     }
 
@@ -289,6 +291,14 @@ public class EnemyBase : MonoBehaviour
             case EnemyState.Death:
                 // Death is handled via trigger 
                 break;
+        }
+    }
+    
+    public void PlayAttackSound()
+    {
+        if (attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);
         }
     }
 

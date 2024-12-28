@@ -182,6 +182,7 @@ MonoBehaviour:
   stunTime: 0.1
   attackKnockbackForce: 4
   receivedKnockbackForce: 2
+  attackSound: {fileID: 8300000, guid: e511ea61557733b44863cce7305f5f97, type: 3}
   explosionRadius: 4
   explosionDamage: 3
   explosionTargets:
