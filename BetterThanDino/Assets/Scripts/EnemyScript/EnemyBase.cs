@@ -92,6 +92,15 @@ public class EnemyBase : MonoBehaviour
 
         CheckForPlayer();
     }
+    
+    private void OnDestroy()
+    {
+        WaveManager waveManager = GameObject.FindObjectOfType<WaveManager>();
+        if (waveManager != null)
+        {
+            waveManager.RemoveEnemy(gameObject);
+        }
+    }
 
     // Movement
     private void MoveLeft()

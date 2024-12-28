@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI; // For UI elements
-using TMPro; // For TextMeshPro UI (if you're using it)
+using UnityEngine.UI;
 
 public class AllySpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
     public GameObject allyPrefab;
+    private GameObject storedAllyPrefab;  // Backup reference
     public Transform spawnPoint;
     public float spawnCooldown = 10f;
     private float currentCooldown;
@@ -13,11 +13,16 @@ public class AllySpawner : MonoBehaviour
 
     [Header("UI Elements")]
     public Button spawnButton;
-    public Image cooldownFill; // Optional: for a visual cooldown indicator
-    public TextMeshProUGUI cooldownText; // Optional: for numerical countdown
+    public Image cooldownOverlay;
 
     private void Start()
     {
+        // Store a backup of the prefab reference
+        if (allyPrefab != null)
+        {
+            storedAllyPrefab = allyPrefab;
+        }
+        
         if (spawnButton != null)
         {
             spawnButton.onClick.AddListener(SpawnAlly);
@@ -45,18 +50,14 @@ public class AllySpawner : MonoBehaviour
     {
         if (!canSpawn) return;
 
-        // Spawn the ally at the spawn point
-        GameObject newAlly = Instantiate(allyPrefab, spawnPoint.position, Quaternion.identity);
-    
-        // Get and reset the animator
-        Animator animator = newAlly.GetComponent<Animator>();
-        if (animator != null)
+        // Use stored prefab if main reference is lost
+        GameObject prefabToUse = allyPrefab != null ? allyPrefab : storedAllyPrefab;
+
+        if (prefabToUse != null && spawnPoint != null)
         {
-            animator.Play("Idle"); // Replace "Idle" with your default animation state name
-            animator.ResetTrigger("Attack"); // Reset any attack triggers you have
+            GameObject newAlly = Instantiate(prefabToUse, spawnPoint.position, Quaternion.identity);
         }
 
-        // Start cooldown
         canSpawn = false;
         currentCooldown = spawnCooldown;
         UpdateUI();
@@ -64,22 +65,15 @@ public class AllySpawner : MonoBehaviour
 
     private void UpdateUI()
     {
-        // Update button interactability
         if (spawnButton != null)
         {
             spawnButton.interactable = canSpawn;
         }
 
-        // Update cooldown fill if you have one
-        if (cooldownFill != null)
+        if (cooldownOverlay != null)
         {
-            cooldownFill.fillAmount = currentCooldown / spawnCooldown;
-        }
-
-        // Update cooldown text if you have one
-        if (cooldownText != null)
-        {
-            cooldownText.text = canSpawn ? "Ready!" : Mathf.Ceil(currentCooldown).ToString();
+            cooldownOverlay.fillAmount = currentCooldown / spawnCooldown;
+            cooldownOverlay.gameObject.SetActive(!canSpawn);
         }
     }
 }

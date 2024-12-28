@@ -47,16 +47,15 @@ public class WaveManager : MonoBehaviour
     private bool isWaveComplete = false;
     private bool isSpawningEnemies = false;
     private List<int> triggeredMilestones = new List<int>();
+    private List<GameObject> activeEnemies = new List<GameObject>();
 
     void Start()
     {
-        // Ensure slider is set up correctly
         if (waveProgressSlider == null)
         {
             waveProgressSlider = GetComponent<Slider>();
         }
 
-        // Initialize slider
         if (waveProgressSlider != null)
         {
             waveProgressSlider.minValue = 0;
@@ -64,18 +63,32 @@ public class WaveManager : MonoBehaviour
             waveProgressSlider.value = 0;
         }
 
-        // Sort milestones by trigger percentage
         waveMilestones.Sort((a, b) => a.triggerPercentage.CompareTo(b.triggerPercentage));
-
-        // Start the wave progression
         StartWaveProgression();
     }
 
     void Update()
     {
-        if (isWaveActive && !isWaveComplete && !isSpawningEnemies)
+        if (isWaveActive && !isWaveComplete)
         {
-            UpdateWaveProgression();
+            if (!isSpawningEnemies && AreAllEnemiesCleared())
+            {
+                UpdateWaveProgression();
+            }
+        }
+    }
+
+    private bool AreAllEnemiesCleared()
+    {
+        activeEnemies.RemoveAll(enemy => enemy == null);
+        return activeEnemies.Count == 0;
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        if (activeEnemies.Contains(enemy))
+        {
+            activeEnemies.Remove(enemy);
         }
     }
 
@@ -86,20 +99,17 @@ public class WaveManager : MonoBehaviour
         isWaveComplete = false;
         isSpawningEnemies = false;
         triggeredMilestones.Clear();
+        activeEnemies.Clear();
     }
 
     void UpdateWaveProgression()
     {
         if (waveProgressSlider != null)
         {
-            // Increment time
             currentTime += Time.deltaTime;
-
-            // Calculate progress percentage
             float progressPercentage = (currentTime / totalWaveDuration) * 100f;
             waveProgressSlider.value = progressPercentage;
 
-            // Update slider color
             if (sliderColorGradient != null)
             {
                 float normalizedTime = currentTime / totalWaveDuration;
@@ -107,10 +117,8 @@ public class WaveManager : MonoBehaviour
                     sliderColorGradient.Evaluate(normalizedTime);
             }
 
-            // Check and spawn enemies at milestones
             CheckMilestoneSpawns(progressPercentage);
 
-            // Mark wave as complete when reaching 100%
             if (progressPercentage >= 100 && !isWaveComplete)
             {
                 isWaveComplete = true;
@@ -124,7 +132,6 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < waveMilestones.Count; i++)
         {
-            // Check if this milestone hasn't been triggered yet and current progress meets or exceeds milestone
             if (!triggeredMilestones.Contains(i) && progressPercentage >= waveMilestones[i].triggerPercentage)
             {
                 SpawnMilestoneEnemies(waveMilestones[i]);
@@ -146,16 +153,16 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < enemySpawn.enemyCount; i++)
             {
-                // Spawn enemies at random spawn points
                 if (spawnPoints.Length > 0 && enemySpawn.enemyPrefab != null)
                 {
                     Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-                    Instantiate(enemySpawn.enemyPrefab, spawnPoint.position, Quaternion.identity);
+                    GameObject enemy = Instantiate(enemySpawn.enemyPrefab, spawnPoint.position, Quaternion.identity);
+                    activeEnemies.Add(enemy);
                 }
                 else if (enemySpawn.enemyPrefab != null)
                 {
-                    // Fallback to default spawn if no points defined
-                    Instantiate(enemySpawn.enemyPrefab, new Vector2(20, -2), Quaternion.identity);
+                    GameObject enemy = Instantiate(enemySpawn.enemyPrefab, new Vector2(20, -2), Quaternion.identity);
+                    activeEnemies.Add(enemy);
                 }
 
                 yield return new WaitForSeconds(spawnRate);
@@ -167,11 +174,9 @@ public class WaveManager : MonoBehaviour
 
     void OnWaveComplete()
     {
-        // You can add any wave completion logic here
         Debug.Log("Wave Complete!");
     }
 
-    // Optional methods for additional control
     public void PauseWave()
     {
         isWaveActive = false;

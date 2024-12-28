@@ -88,10 +88,11 @@ public class Nightborne : EnemyBase
                 playerHealth.ChangeHealth(-explosionDamage);
             }
 
-            EnemyBase enemy = hit.GetComponent<EnemyBase>();
-            if (enemy != null && enemy != this)
+            // Add check for ally
+            AllyBase ally = hit.GetComponent<AllyBase>();  // Use your actual ally script name here
+            if (ally != null)
             {
-                enemy.TakeDamage(explosionDamage);
+                ally.TakeDamage(explosionDamage, transform);  // Passing the Nightborne's transform for knockback direction
             }
         }
     }
