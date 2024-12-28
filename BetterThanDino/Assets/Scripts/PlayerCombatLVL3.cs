@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,15 @@ public class PlayerCombatLVL3 : MonoBehaviour
     public LayerMask enemyLayer; // Layer that identifies enemies
     public Animator anim; // Reference to the Animator for triggering animations
     private float timer; // Tracks cooldown time
+    public AudioClip attackSound; // Attack sound effect
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        // Set up the AudioSource component
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     private void Update()
     {
@@ -28,6 +38,7 @@ public class PlayerCombatLVL3 : MonoBehaviour
         if (timer <= 0)
         {
             anim.SetBool("isAttacking", true); // Trigger attack animation
+            PlayAttackSound();
             timer = StatsManager.Instance.cooldown; // Reset the cooldown
         }
     }
@@ -49,7 +60,13 @@ public class PlayerCombatLVL3 : MonoBehaviour
             }
         }
     }
-
+    private void PlayAttackSound()
+    {
+        if (attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
+    }
     public void FinishAttacking()
     {
         anim.SetBool("isAttacking", false); // End attack animation
