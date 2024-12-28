@@ -8,6 +8,7 @@ public class DoorInteraction : MonoBehaviour
     public GameObject popupText;       // Reference to the pop-up text
     private bool isPlayerNear = false; // Tracks if the player is near the door
 
+    public Vector3 offset = new Vector3(0, 1.5f, 0); // Offset for the pop-up text
     private RectTransform popupTransform; // RectTransform of the pop-up text
     private Camera mainCamera;           // Reference to the main camera
 
@@ -60,11 +61,10 @@ public class DoorInteraction : MonoBehaviour
 
     void UpdatePopupPosition()
     {
-        // Convert player's world position to screen position
-        Vector3 screenPosition = mainCamera.WorldToScreenPoint(player.transform.position);
-        
-        screenPosition.y -= 10;
-        
+        // Convert player's world position to screen position with an offset
+        Vector3 worldPositionWithOffset = player.transform.position + offset;
+        Vector3 screenPosition = mainCamera.WorldToScreenPoint(worldPositionWithOffset);
+
         // Apply the new position to the pop-up text
         popupTransform.position = screenPosition;
     }
