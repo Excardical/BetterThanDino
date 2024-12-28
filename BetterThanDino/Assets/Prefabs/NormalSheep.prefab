@@ -106,9 +106,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -808879847
+  m_SortingLayer: 7
+  m_SortingOrder: 4
   m_Sprite: {fileID: -333136242178778763, guid: 7c79023804f835e4b8ba4a62fb8c8d05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &2606786929079260986
 CapsuleCollider2D:
@@ -171,9 +171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 4
   speed: 3
-  attackRange: 1
+  attackRange: 2
   enemyDetectRange: 2
-  attackCooldown: 2
+  attackCooldown: 3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -185,7 +185,7 @@ MonoBehaviour:
   attackPoint: {fileID: 2606786928908907705}
   weaponRange: 0.9
   knockbackTime: 0.5
-  stunTime: 0.5
+  stunTime: 0.2
 --- !u!95 &2606786929079260967
 Animator:
   serializedVersion: 5

@@ -39,7 +39,7 @@ public class EnemyBase : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
     private Animator anim;
-    
+
     // Sound Management
     [Header("Audio Settings")]
     public AudioClip attackSound;
@@ -66,7 +66,7 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.LogError("AttackPoint Transform is not assigned in the Inspector!");
         }
-        
+
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
@@ -100,7 +100,7 @@ public class EnemyBase : MonoBehaviour
 
         CheckForPlayer();
     }
-    
+
     private void OnDestroy()
     {
         WaveManager waveManager = GameObject.FindObjectOfType<WaveManager>();
@@ -142,22 +142,28 @@ public class EnemyBase : MonoBehaviour
                 playerHealth.ChangeHealth(-damage);
                 PlayerMovement playerMovement = hit.GetComponent<PlayerMovement>();
                 playerMovement?.Knockback(transform, attackKnockbackForce, knockbackTime);
+
+                PlayAttackSound();
+                break; // Stop processing further targets
             }
 
             BaseHealth baseHealth = hit.GetComponent<BaseHealth>();
             if (baseHealth != null)
             {
                 baseHealth.ChangeHealth(-damage);
+
+                PlayAttackSound();
+                break; // Stop processing further targets
             }
-            
-            // Add check for AllyBase
+
             AllyBase ally = hit.GetComponent<AllyBase>();
             if (ally != null)
             {
                 ally.TakeDamage(damage, transform, attackKnockbackForce, stunTime);
-            }
 
-            PlayAttackSound();
+                PlayAttackSound();
+                break; // Stop processing further targets
+            }
         }
     }
 
@@ -293,7 +299,7 @@ public class EnemyBase : MonoBehaviour
                 break;
         }
     }
-    
+
     public void PlayAttackSound()
     {
         if (attackSound != null)
