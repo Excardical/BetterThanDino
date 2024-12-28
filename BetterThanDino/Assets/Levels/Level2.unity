@@ -1721,6 +1721,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8f1bfe2f95f7d4da3ccbdd875e1233, type: 3}
+--- !u!114 &678928975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1374239777, guid: ad8f1bfe2f95f7d4da3ccbdd875e1233, type: 3}
+  m_PrefabInstance: {fileID: 678928974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f83cd250fc06543a38fadd12d82388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &763105129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2974,14 +2985,56 @@ MonoBehaviour:
   waveMilestones:
   - triggerPercentage: 0
     enemySpawns:
-    - enemyPrefab: {fileID: 1437476698472087815, guid: d08528be063502947aeac80cb14e2884, type: 3}
+    - enemyPrefab: {fileID: 8189739791375000529}
+      enemyCount: 1
+  - triggerPercentage: 5
+    enemySpawns:
+    - enemyPrefab: {fileID: 4748147070587464512}
+      enemyCount: 1
+  - triggerPercentage: 10
+    enemySpawns:
+    - enemyPrefab: {fileID: 3812671551275014403}
+      enemyCount: 1
+  - triggerPercentage: 15
+    enemySpawns:
+    - enemyPrefab: {fileID: 1437476697316945857}
+      enemyCount: 1
+  - triggerPercentage: 25
+    enemySpawns:
+    - enemyPrefab: {fileID: 8189739791375000529}
+      enemyCount: 4
+    - enemyPrefab: {fileID: 3812671551275014403}
+      enemyCount: 1
+  - triggerPercentage: 40
+    enemySpawns:
+    - enemyPrefab: {fileID: 8189739791375000529}
       enemyCount: 2
-    - enemyPrefab: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
+    - enemyPrefab: {fileID: 4748147070587464512}
+      enemyCount: 2
+    - enemyPrefab: {fileID: 1437476697316945857}
       enemyCount: 1
-    - enemyPrefab: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
+  - triggerPercentage: 60
+    enemySpawns:
+    - enemyPrefab: {fileID: 3812671551275014403}
+      enemyCount: 2
+    - enemyPrefab: {fileID: 4748147070587464512}
+      enemyCount: 2
+  - triggerPercentage: 80
+    enemySpawns:
+    - enemyPrefab: {fileID: 4748147070587464512}
+      enemyCount: 3
+    - enemyPrefab: {fileID: 8189739791375000529}
+      enemyCount: 3
+    - enemyPrefab: {fileID: 1437476697316945857}
       enemyCount: 1
-    - enemyPrefab: {fileID: 3812671550851568913, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
+  - triggerPercentage: 100
+    enemySpawns:
+    - enemyPrefab: {fileID: 4748147070587464512}
       enemyCount: 1
+    - enemyPrefab: {fileID: 1437476697316945857}
+      enemyCount: 2
+    - enemyPrefab: {fileID: 3812671551275014403}
+      enemyCount: 2
 --- !u!4 &1011564127
 Transform:
   m_ObjectHideFlags: 0
@@ -3743,7 +3796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 245293033}
-  WinScreen: {fileID: 0}
+  WinScreen: {fileID: 678928975}
   baseHealth: {fileID: 1570670506}
 --- !u!114 &1938361191
 MonoBehaviour:
@@ -4311,6 +4364,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1437476697538882210, guid: d08528be063502947aeac80cb14e2884, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 1437476698472087815, guid: d08528be063502947aeac80cb14e2884, type: 3}
       propertyPath: m_Name
       value: Shardsoul
@@ -4321,7 +4378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1437476698472087821, guid: d08528be063502947aeac80cb14e2884, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.05
+      value: 14.85
       objectReference: {fileID: 0}
     - target: {fileID: 1437476698472087821, guid: d08528be063502947aeac80cb14e2884, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4359,8 +4416,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1437476698472087822, guid: d08528be063502947aeac80cb14e2884, type: 3}
+      propertyPath: attackRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437476698472087822, guid: d08528be063502947aeac80cb14e2884, type: 3}
+      propertyPath: weaponRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437476698472087822, guid: d08528be063502947aeac80cb14e2884, type: 3}
+      propertyPath: attackCooldown
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08528be063502947aeac80cb14e2884, type: 3}
+--- !u!1 &1437476697316945857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1437476698472087815, guid: d08528be063502947aeac80cb14e2884, type: 3}
+  m_PrefabInstance: {fileID: 1437476697316945856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3812671551275014402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4371,6 +4445,14 @@ PrefabInstance:
     - target: {fileID: 3812671550851568913, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
       propertyPath: m_Name
       value: Bringer of Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812671550851568921, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
+      propertyPath: weaponRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812671550851568921, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
+      propertyPath: attackCooldown
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3812671550851568922, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
       propertyPath: m_RootOrder
@@ -4418,6 +4500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
+--- !u!1 &3812671551275014403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3812671550851568913, guid: 8ddf0ab6f6afdc04baccb9927bc60d35, type: 3}
+  m_PrefabInstance: {fileID: 3812671551275014402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4748147070587464511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4425,13 +4512,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4748147070440212012, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748147070440212012, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
+      propertyPath: weaponRange
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748147070440212012, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
+      propertyPath: attackCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4748147070440212013, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4748147070440212013, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.98
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4748147070440212013, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4475,6 +4574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
+--- !u!1 &4748147070587464512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4748147070440212018, guid: 7d47c72da58fc40438094a670bc85d77, type: 3}
+  m_PrefabInstance: {fileID: 4748147070587464511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6312680804435077324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4492,7 +4596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6312680803899020386, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -82.48
+      value: -82.32
       objectReference: {fileID: 0}
     - target: {fileID: 6312680803899020386, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4533,6 +4637,14 @@ PrefabInstance:
     - target: {fileID: 6312680803899020388, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
       propertyPath: m_Name
       value: Ally_Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312680803899020389, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
+      propertyPath: weaponRange
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312680804032414822, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ae4e1eb5711d4140bb2f031677d19c0, type: 3}
@@ -4593,3 +4705,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45af83138329d584c95184f4a4caf120, type: 3}
+--- !u!1 &8189739791375000529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8189739790931402696, guid: 45af83138329d584c95184f4a4caf120, type: 3}
+  m_PrefabInstance: {fileID: 8189739791375000528}
+  m_PrefabAsset: {fileID: 0}
