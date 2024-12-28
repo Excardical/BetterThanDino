@@ -5,21 +5,49 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameOverScreen GameOverScreen;
+    public WinScreen WinScreen;
     public BaseHealth baseHealth;
     private bool isGameOver = false;
+    private bool isWin = false;
 
     private void Update()
     {
-        // Check if the player's health is 0 or below and the game is not already over.
-        if (!isGameOver && StatsManager.Instance != null && StatsManager.Instance.currentHealth <= 0)
+        // Check for lose conditions
+        if (!isWin && !isGameOver && StatsManager.Instance != null && StatsManager.Instance.currentHealth <= 0)
         {
             GameOver();
         }
 
-        if (!isGameOver && baseHealth != null && baseHealth.currentHealth <= 0)
+        if (!isWin && !isGameOver && baseHealth != null && baseHealth.currentHealth <= 0)
         {
             GameOver();
         }
+
+        // Check win condition continuously
+        if (!isWin && !isGameOver)
+        {
+            CheckWinCondition();
+        }
+    }
+
+    public void CheckWinCondition()
+    {
+        if (WaveManager.Instance != null)
+        {
+            // Win if wave is complete AND all enemies are defeated
+            if (WaveManager.Instance.IsWaveComplete && WaveManager.Instance.AreAllEnemiesDefeated)
+            {
+                Win();
+            }
+        }
+    }
+
+    public void Win()
+    {
+        Debug.Log("Victory!");
+        isWin = true;
+        WinScreen.ShowWinScreen();
+        StartCoroutine(PauseGameAfterFade());
     }
 
     public void GameOver()

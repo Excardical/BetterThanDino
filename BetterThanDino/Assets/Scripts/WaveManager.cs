@@ -27,6 +27,10 @@ public class WaveMilestone
 
 public class WaveManager : MonoBehaviour
 {
+    public static WaveManager Instance { get; private set; }
+    public bool IsWaveComplete => isWaveComplete;
+    public bool AreAllEnemiesDefeated => AreAllEnemiesCleared();
+
     [Header("Wave Progression Settings")]
     public float totalWaveDuration = 30f;
     public float spawnRate = 0.5f;
@@ -49,6 +53,18 @@ public class WaveManager : MonoBehaviour
     private List<int> triggeredMilestones = new List<int>();
     private List<GameObject> activeEnemies = new List<GameObject>();
     private bool waitingForSpawn = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -76,7 +92,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private bool AreAllEnemiesCleared()
+    public bool AreAllEnemiesCleared()
     {
         activeEnemies.RemoveAll(enemy => enemy == null);
         return activeEnemies.Count == 0;
@@ -120,8 +136,6 @@ public class WaveManager : MonoBehaviour
 
             if (progressPercentage >= 100 && !isWaveComplete)
             {
-                isWaveComplete = true;
-                isWaveActive = false;
                 OnWaveComplete();
             }
         }
@@ -177,6 +191,18 @@ public class WaveManager : MonoBehaviour
     void OnWaveComplete()
     {
         Debug.Log("Wave Complete!");
+        isWaveComplete = true;
+        isWaveActive = false;
+        
+        // Check if all enemies are cleared when wave completes
+        if (AreAllEnemiesCleared())
+        {
+            GameController gameController = FindObjectOfType<GameController>();
+            if (gameController != null)
+            {
+                gameController.CheckWinCondition();
+            }
+        }
     }
 
     public void PauseWave()
