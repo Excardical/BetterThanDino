@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 274100509}
-  sceneName: Level3
+  sceneName: Level3Intro
   popupText: {fileID: 1816628610}
 --- !u!58 &260085030
 CircleCollider2D:
