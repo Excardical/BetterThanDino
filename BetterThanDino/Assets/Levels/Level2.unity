@@ -2948,7 +2948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e701a9e493395a4c804181479ef68c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalWaveDuration: 60
+  totalWaveDuration: 100
   spawnRate: 1
   spawnPoints:
   - {fileID: 1011564127}
