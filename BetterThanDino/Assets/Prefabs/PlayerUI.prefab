@@ -1371,6 +1371,12 @@ MonoBehaviour:
     cost: 7
     cooldown: 5
     spawnOffset: {x: 0, y: 0, z: 0}
+  - name: AllyArcher
+    prefab: {fileID: 2210575117479435517, guid: 4af432f640bd0b0468aa08dd8117bfdf, type: 3}
+    icon: {fileID: 8220773718402512202, guid: 28e23e4c91a57e542a6e5d195d143a31, type: 3}
+    cost: 8
+    cooldown: 5
+    spawnOffset: {x: 0, y: 0, z: 0}
   maxSelections: 3
   selectionScreen: {fileID: 69852147}
   characterButtonPrefab: {fileID: 3095162577417545463, guid: fc4fcb7376a015648a775c15b8764de2, type: 3}
