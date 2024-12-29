@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437476697538882209}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35300004, y: -0.22850001, z: -0.03741603}
+  m_LocalPosition: {x: 0.06, y: -0.22850001, z: -0.03741603}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   speed: 2
-  attackRange: 5.5
+  attackRange: 6
   playerDetectRange: 7
-  attackCooldown: 3
+  attackCooldown: 6
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -239,7 +239,7 @@ MonoBehaviour:
   detectionOffset: {x: 0, y: 0}
   damage: 4
   attackPoint: {fileID: 1437476697538882210}
-  weaponRange: 5
+  weaponRange: 4
   knockbackTime: 0.75
   stunTime: 0.5
   attackKnockbackForce: 25

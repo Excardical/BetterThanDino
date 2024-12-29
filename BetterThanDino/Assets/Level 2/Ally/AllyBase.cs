@@ -285,6 +285,12 @@ public enum AllyState
     Chasing,
     Attacking,
     Knockback,
-    MoveRight, 
+    MoveRight,
     Death 
+}
+
+public enum AllyType
+{
+    Knight, 
+    Archer
 }
