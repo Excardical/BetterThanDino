@@ -69,12 +69,4 @@ public class Player_Combat : MonoBehaviour
             audioSource.PlayOneShot(attackSound);
         }
     }
-    
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null) return;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, StatsManager.Instance.weaponRange);
-    }
 }

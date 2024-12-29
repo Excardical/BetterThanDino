@@ -195,7 +195,7 @@ MonoBehaviour:
   speed: 3
   attackRange: 5
   playerDetectRange: 5
-  attackCooldown: 2
+  attackCooldown: 4
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -208,7 +208,7 @@ MonoBehaviour:
   detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 3812671551949013150}
-  weaponRange: 3
+  weaponRange: 2
   knockbackTime: 0.5
   stunTime: 0.5
   attackKnockbackForce: 5

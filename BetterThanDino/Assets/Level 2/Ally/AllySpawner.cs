@@ -4,76 +4,113 @@ using UnityEngine.UI;
 public class AllySpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    public GameObject allyPrefab;
-    private GameObject storedAllyPrefab;  // Backup reference
+    public GameObject allyKnightPrefab;
+    public GameObject allyArcherPrefab;
     public Transform spawnPoint;
-    public float spawnCooldown = 10f;
-    private float currentCooldown;
-    private bool canSpawn = true;
+
+    public float knightCooldown = 10f;
+    public float archerCooldown = 5f;
+
+    private float knightCurrentCooldown = 0f;
+    private float archerCurrentCooldown = 0f;
+
+    private bool canSpawnKnight = true;
+    private bool canSpawnArcher = true;
 
     [Header("UI Elements")]
-    public Button spawnButton;
-    public Image cooldownOverlay;
+    public Button spawnKnightButton;
+    public Button spawnArcherButton;
+    public Image knightCooldownOverlay;
+    public Image archerCooldownOverlay;
 
     private void Start()
     {
-        // Store a backup of the prefab reference
-        if (allyPrefab != null)
+        if (spawnKnightButton != null)
         {
-            storedAllyPrefab = allyPrefab;
+            spawnKnightButton.onClick.AddListener(SpawnKnight);
         }
-        
-        if (spawnButton != null)
+
+        if (spawnArcherButton != null)
         {
-            spawnButton.onClick.AddListener(SpawnAlly);
+            spawnArcherButton.onClick.AddListener(SpawnArcher);
         }
-        
-        currentCooldown = 0;
+
         UpdateUI();
     }
 
     private void Update()
     {
-        if (!canSpawn)
+        // Handle cooldown for Knight
+        if (!canSpawnKnight)
         {
-            currentCooldown -= Time.deltaTime;
-            if (currentCooldown <= 0)
+            knightCurrentCooldown -= Time.deltaTime;
+            if (knightCurrentCooldown <= 0)
             {
-                canSpawn = true;
-                currentCooldown = 0;
+                canSpawnKnight = true;
+                knightCurrentCooldown = 0;
             }
-            UpdateUI();
         }
+
+        // Handle cooldown for Archer
+        if (!canSpawnArcher)
+        {
+            archerCurrentCooldown -= Time.deltaTime;
+            if (archerCurrentCooldown <= 0)
+            {
+                canSpawnArcher = true;
+                archerCurrentCooldown = 0;
+            }
+        }
+
+        UpdateUI();
     }
 
-    public void SpawnAlly()
+    public void SpawnKnight()
     {
-        if (!canSpawn) return;
+        if (!canSpawnKnight || allyKnightPrefab == null || spawnPoint == null) return;
 
-        // Use stored prefab if main reference is lost
-        GameObject prefabToUse = allyPrefab != null ? allyPrefab : storedAllyPrefab;
+        Instantiate(allyKnightPrefab, spawnPoint.position, Quaternion.identity);
 
-        if (prefabToUse != null && spawnPoint != null)
-        {
-            GameObject newAlly = Instantiate(prefabToUse, spawnPoint.position, Quaternion.identity);
-        }
+        canSpawnKnight = false;
+        knightCurrentCooldown = knightCooldown;
 
-        canSpawn = false;
-        currentCooldown = spawnCooldown;
+        UpdateUI();
+    }
+
+    public void SpawnArcher()
+    {
+        if (!canSpawnArcher || allyArcherPrefab == null || spawnPoint == null) return;
+
+        Instantiate(allyArcherPrefab, spawnPoint.position, Quaternion.identity);
+
+        canSpawnArcher = false;
+        archerCurrentCooldown = archerCooldown;
+
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        if (spawnButton != null)
+        if (spawnKnightButton != null)
         {
-            spawnButton.interactable = canSpawn;
+            spawnKnightButton.interactable = canSpawnKnight;
         }
 
-        if (cooldownOverlay != null)
+        if (knightCooldownOverlay != null)
         {
-            cooldownOverlay.fillAmount = currentCooldown / spawnCooldown;
-            cooldownOverlay.gameObject.SetActive(!canSpawn);
+            knightCooldownOverlay.fillAmount = knightCurrentCooldown / knightCooldown;
+            knightCooldownOverlay.gameObject.SetActive(!canSpawnKnight);
+        }
+
+        if (spawnArcherButton != null)
+        {
+            spawnArcherButton.interactable = canSpawnArcher;
+        }
+
+        if (archerCooldownOverlay != null)
+        {
+            archerCooldownOverlay.fillAmount = archerCurrentCooldown / archerCooldown;
+            archerCooldownOverlay.gameObject.SetActive(!canSpawnArcher);
         }
     }
 }

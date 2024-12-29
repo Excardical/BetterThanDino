@@ -162,9 +162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 4
   speed: 3
-  attackRange: 5
+  attackRange: 2
   playerDetectRange: 7
-  attackCooldown: 1.8
+  attackCooldown: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -177,7 +177,7 @@ MonoBehaviour:
   detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 4748147071810879148}
-  weaponRange: 2
+  weaponRange: 1.2
   knockbackTime: 0.1
   stunTime: 0.1
   attackKnockbackForce: 4
