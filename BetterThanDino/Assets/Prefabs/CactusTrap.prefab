@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7589531682628105220}
   - component: {fileID: 7589531682628105221}
   - component: {fileID: 7589531682628105222}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: CactusTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

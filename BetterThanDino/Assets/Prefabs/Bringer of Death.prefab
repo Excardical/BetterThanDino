@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3812671550851568921}
   m_Layer: 7
   m_Name: Bringer of Death
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1657219905
-  m_SortingLayer: 6
+  m_SortingLayerID: 2022651341
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1064796118, guid: a137f244fe6e8ab45a90392228709fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -191,22 +191,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3390a0dbcbdc0e447b14f2d68bd61d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 8
+  maxHealth: 5
   speed: 3
-  attackRange: 3
+  attackRange: 5
   playerDetectRange: 5
-  attackCooldown: 2
+  attackCooldown: 4
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  baseLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 3812671551949013150}
-  weaponRange: 3
+  weaponRange: 2
   knockbackTime: 0.5
   stunTime: 0.5
   attackKnockbackForce: 5
   receivedKnockbackForce: 5
+  attackSound: {fileID: 8300000, guid: e511ea61557733b44863cce7305f5f97, type: 3}
 --- !u!1 &3812671551949013145
 GameObject:
   m_ObjectHideFlags: 0

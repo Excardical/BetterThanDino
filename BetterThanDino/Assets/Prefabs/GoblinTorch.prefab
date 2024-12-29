@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3611843093579295132}
   - component: {fileID: 3611843093579295133}
   - component: {fileID: 3611843093579295122}
-  - component: {fileID: 3611843093579295129}
-  - component: {fileID: 3611843093579295131}
   - component: {fileID: 7979726024638881571}
   m_Layer: 7
   m_Name: GoblinTorch
@@ -150,40 +148,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3611843093579295129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611843093579295123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cb38a324bdb0243aef1f2a3bbb568d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  attackPoint: {fileID: 3611843094195955922}
-  weaponRange: 1.2
-  knockbackForce: 8
-  stunTime: 0.4
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &3611843093579295131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611843093579295123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb71fd7c9ed085d42a14b32f9d35804d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 5
-  maxHealth: 5
 --- !u!114 &7979726024638881571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,14 +171,18 @@ MonoBehaviour:
   baseLayer:
     serializedVersion: 2
     m_Bits: 2048
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   detectionOffset: {x: -2, y: 0}
   damage: 1
   attackPoint: {fileID: 3611843094195955922}
-  weaponRange: 1
+  weaponRange: 0.9
   knockbackTime: 0.5
   stunTime: 0.5
   attackKnockbackForce: 5
   receivedKnockbackForce: 5
+  attackSound: {fileID: 0}
 --- !u!1 &3611843094195955923
 GameObject:
   m_ObjectHideFlags: 0

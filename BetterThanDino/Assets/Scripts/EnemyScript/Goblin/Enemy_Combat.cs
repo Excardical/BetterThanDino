@@ -23,8 +23,22 @@ public class Enemy_Combat : MonoBehaviour
 
         if (hits.Length > 0)
         {
-            hits[0].GetComponent<PlayerHealth>().ChangeHealth(-damage);
-            hits[0].GetComponent<PlayerMovement>().Knockback(transform, knockbackForce, stunTime);
+            // Process the first hit
+            PlayerHealth playerHealth = hits[0].GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-damage);
+            }
+
+            PlayerMovement playerMovement = hits[0].GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.Knockback(transform, knockbackForce, stunTime);
+            }
+        }
+        else
+        {
+            Debug.Log("No player detected in the attack range.");
         }
     }
 }

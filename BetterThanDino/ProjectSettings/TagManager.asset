@@ -7,6 +7,7 @@ TagManager:
   - Target
   - Ground
   - Base
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,7 @@ TagManager:
   - Accessories
   - Scorpion
   - Base
-  - 
-  - 
+  - Trap
   - 
   - 
   - 

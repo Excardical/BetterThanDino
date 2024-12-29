@@ -203,6 +203,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 3427980061937095563}
+  attackSound: {fileID: 8300000, guid: 8cca0b2f6deeec44fbea606c77705925, type: 3}
 --- !u!114 &3427980061937095560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  cooldown: 1.5
-  weaponRange: 0.7
+  cooldown: 0.8
+  weaponRange: 1
   knockbackForce: 5
   knockbackTime: 0.15
   stunTime: 0.2

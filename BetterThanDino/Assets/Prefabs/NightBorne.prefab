@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4748147070440212012}
   m_Layer: 7
   m_Name: NightBorne
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 4748147070440212018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.11, y: -3.15, z: 0.009549115}
-  m_LocalScale: {x: -1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: -1.8, y: 1.8, z: 1.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4748147071810879148}
   - {fileID: 4748147072207901155}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1657219905
-  m_SortingLayer: 6
+  m_SortingLayerID: 2022651341
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1940722804, guid: 2db133f44d35dc4458916d2f16f08c10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -160,20 +160,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d579ebe29393a8e4c938524263f7f587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 7
+  maxHealth: 4
   speed: 3
-  attackRange: 3
+  attackRange: 2
   playerDetectRange: 7
-  attackCooldown: 3.5
+  attackCooldown: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  baseLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 4748147071810879148}
-  weaponRange: 3
-  knockbackForce: 10
-  knockbackTime: 1
-  stunTime: 1
+  weaponRange: 1.2
+  knockbackTime: 0.1
+  stunTime: 0.1
+  attackKnockbackForce: 4
+  receivedKnockbackForce: 2
+  attackSound: {fileID: 8300000, guid: e511ea61557733b44863cce7305f5f97, type: 3}
+  explosionRadius: 4
+  explosionDamage: 3
+  explosionTargets:
+    serializedVersion: 2
+    m_Bits: 64
+  deathDelay: 1
+  destroyDelay: 2
 --- !u!1 &4748147071810879149
 GameObject:
   m_ObjectHideFlags: 0
