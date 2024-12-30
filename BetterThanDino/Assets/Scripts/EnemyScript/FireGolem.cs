@@ -6,23 +6,19 @@ public class FireGolem : EnemyBase
 {
     private Animator anim;
     private bool isDying = false; // 防止重复执行死亡逻辑
-    private bool localIsPostAttackPausing = false; // 本地攻击暂停标志\
-    public Transform target;
+    private bool localIsPostAttackPausing = false; // 本地攻击暂停标志
 
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
-        if(transform.position.x - target.position.x < 0) transform.eulerAngles = new Vector3(0, 180, 0);
-        if(transform.position.x - target.position.x > 0) transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     public override void TakeDamage(int damage)
