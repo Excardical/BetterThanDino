@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d579ebe29393a8e4c938524263f7f587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 5
   speed: 3
   attackRange: 2
   playerDetectRange: 7
@@ -184,7 +184,7 @@ MonoBehaviour:
   receivedKnockbackForce: 2
   attackSound: {fileID: 8300000, guid: e511ea61557733b44863cce7305f5f97, type: 3}
   explosionRadius: 4
-  explosionDamage: 3
+  explosionDamage: 2
   explosionTargets:
     serializedVersion: 2
     m_Bits: 64

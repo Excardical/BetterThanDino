@@ -194,7 +194,7 @@ MonoBehaviour:
   speed: 3
   attackRange: 7
   enemyDetectRange: 12
-  attackCooldown: 4.5
+  attackCooldown: 3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

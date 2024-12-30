@@ -173,7 +173,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 1
   attackPoint: {fileID: 6312680804032414822}
-  weaponRange: 2.7
+  weaponRange: 3
   knockbackTime: 0.5
   stunTime: 0.5
 --- !u!1 &6312680804032414821
