@@ -5,6 +5,7 @@ using UnityEngine;
 public class FallingFireball : MonoBehaviour
 {
     public float speed = 5f; // Fireball move speed
+    public int damage = 1;
     private Vector3 direction; // Fire falling direction
     
     // Start is called before the first frame update
@@ -26,6 +27,16 @@ public class FallingFireball : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("The player is hit!");
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-damage);
+            }
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("The enemy is hit!");
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Ground"))
