@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1568252257246239437}
   - component: {fileID: 339375182808125951}
   - component: {fileID: 5295757656570232791}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ally_dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.02}
   m_Size: {x: 0.4, y: 0.3}
   m_Direction: 1
 --- !u!114 &339375182808125951
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebef3985a814b594fa9879b4163ef19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 10
   speed: 3
   attackRange: 2
   enemyDetectRange: 2

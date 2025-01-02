@@ -170,9 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6af52a14f273aa408b24efc2d7b0498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 10
   speed: 2
-  attackRange: 2
+  attackRange: 4
   playerDetectRange: 2
   attackCooldown: 2
   playerLayer:
@@ -184,10 +184,10 @@ MonoBehaviour:
   allyLayer:
     serializedVersion: 2
     m_Bits: 0
-  detectionOffset: {x: -2, y: 0}
+  detectionOffset: {x: 0, y: 0}
   damage: 1
   attackPoint: {fileID: 3611843094195955922, guid: cc5efd371b607ae4692a8184c1a44fbf, type: 3}
-  weaponRange: 0.9
+  weaponRange: 4
   knockbackTime: 0.5
   stunTime: 0.5
   attackKnockbackForce: 5
@@ -217,7 +217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938622291999800546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.419, y: -0.082, z: 0}
+  m_LocalPosition: {x: -0.389, y: -0.067, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938622292336665866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.192, y: -0.1, z: 0}
+  m_LocalPosition: {x: -0.273, y: -0.059, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
