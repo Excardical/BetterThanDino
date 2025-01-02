@@ -191,7 +191,7 @@ MonoBehaviour:
   stunTime: 0.3
   attackKnockbackForce: 10
   receivedKnockbackForce: 5
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: f3f68981c03581b4981f8e568562bd7b, type: 3}
 --- !u!95 &4399198482954605129
 Animator:
   serializedVersion: 5
