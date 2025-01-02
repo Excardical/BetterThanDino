@@ -33,8 +33,13 @@ EditorBuildSettings:
     path: Assets/Levels/Level4.unity
     guid: 35ff81c42daeb6142a7df1ce62275c24
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Levels/Level4Intro.unity
     guid: e15d24138909d6046899337eb4130465
+=======
+    path: Assets/Levels/Level5Intro.unity
+    guid: 1f9c53f63e14e894e819bc97c3b3f21b
+>>>>>>> Stashed changes
   - enabled: 1
     path: Assets/Levels/Level5.unity
     guid: a010c83dd0aa9ad4880fa7c9ac1b9795
