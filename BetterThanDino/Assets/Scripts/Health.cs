@@ -69,6 +69,11 @@ public class Health : MonoBehaviour
     private void Deactivate()
     {
         gameObject.SetActive(false);
+        WaveManager waveManager = GameObject.FindObjectOfType<WaveManager>();
+        if (waveManager != null)
+        {
+            waveManager.RemoveEnemy(gameObject);
+        }
         
     }
 }

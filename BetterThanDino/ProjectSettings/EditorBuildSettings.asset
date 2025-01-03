@@ -5,7 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Levels/Level3.unity
+    guid: fafc382ed7519504a9e4ff2d658160fd
+  - enabled: 1
+    path: Assets/Levels/IntroScene.unity
+    guid: 85bccfdc56d02a745843dd8dc6cf4c65
+  - enabled: 1
+    path: Assets/Levels/Level1.unity
+    guid: eb8a44b57d5d6c342a2bd10ac919d56d
+  - enabled: 1
+    path: Assets/Levels/Level2.unity
+    guid: 8ccc649d1df1204429a6cf1f0737d833
+  - enabled: 1
+    path: Assets/Levels/Level2Intro.unity
+    guid: 206ea4ad351c9c848be1a78f76e01c61
+  - enabled: 1
+    path: Assets/Levels/Level3Intro.unity
+    guid: 3ca0267a81c90a54c911795e3f377856
+  - enabled: 1
+    path: Assets/Levels/Level4.unity
+    guid: 35ff81c42daeb6142a7df1ce62275c24
+  - enabled: 1
+    path: Assets/Levels/Level4Intro.unity
+    guid: e15d24138909d6046899337eb4130465
+  - enabled: 1
+    path: Assets/Levels/Level5.unity
+    guid: a010c83dd0aa9ad4880fa7c9ac1b9795
+  - enabled: 1
+    path: Assets/Levels/Level5Intro.unity
+    guid: 1f9c53f63e14e894e819bc97c3b3f21b
+  - enabled: 1
     path: Assets/Levels/Main Menu.unity
     guid: 1cb8742e0c527f54b8ad2e5d9a266f00
   - enabled: 1
@@ -14,33 +44,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Select Level.unity
     guid: f12f1f4eb7cb8744288c7c2e4c39f0da
-  - enabled: 1
-    path: Assets/Levels/Level1.unity
-    guid: eb8a44b57d5d6c342a2bd10ac919d56d
-  - enabled: 1
-    path: Assets/Levels/Level2Intro.unity
-    guid: 206ea4ad351c9c848be1a78f76e01c61
-  - enabled: 1
-    path: Assets/Levels/Level2.unity
-    guid: 8ccc649d1df1204429a6cf1f0737d833
-  - enabled: 1
-    path: Assets/Levels/Level3Intro.unity
-    guid: 3ca0267a81c90a54c911795e3f377856
-  - enabled: 1
-    path: Assets/Levels/Level3.unity
-    guid: fafc382ed7519504a9e4ff2d658160fd
-  - enabled: 1
-    path: Assets/Levels/Level4.unity
-    guid: 35ff81c42daeb6142a7df1ce62275c24
-  - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/Levels/Level4Intro.unity
-    guid: e15d24138909d6046899337eb4130465
-=======
-    path: Assets/Levels/Level5Intro.unity
-    guid: 1f9c53f63e14e894e819bc97c3b3f21b
->>>>>>> Stashed changes
-  - enabled: 1
-    path: Assets/Levels/Level5.unity
-    guid: a010c83dd0aa9ad4880fa7c9ac1b9795
   m_configObjects: {}

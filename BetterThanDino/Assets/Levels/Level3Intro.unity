@@ -421,7 +421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bereft of Companions, Thy Strength Alone Shall Endure.
+  m_text: Bereft of Companions, Thy Strength Alone Shall Endure
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
   m_sharedMaterial: {fileID: 7065357959954763187, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thou Art Cast into the Desert of Endlessness.
+  m_text: Thou Art Cast into the Deserted City of Valhume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
   m_sharedMaterial: {fileID: 7065357959954763187, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lo, the Scorpions Arise, Seeketh Thy Demise\u2014Strike True, or Be Felled!"
+  m_text: "Lo, the Scorpions Arise, Seeketh Thy Demise\u2014Strike True, or Be Felled"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
   m_sharedMaterial: {fileID: 7065357959954763187, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
@@ -827,7 +827,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Beware the Cactus, for Their Barbs Bring Pain; Shun the Falling Sands Lest
-    They Entomb Thee.
+    They Entomb Thee
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}
   m_sharedMaterial: {fileID: 7065357959954763187, guid: 2725cb97d0bcce245888d5b0c4cf6505, type: 2}

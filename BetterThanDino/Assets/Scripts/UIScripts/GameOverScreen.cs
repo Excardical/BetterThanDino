@@ -31,6 +31,11 @@ public class GameOverScreen : MonoBehaviour
         Time.timeScale = 1; // Resume the game
         SceneManager.LoadScene("Level2");
     }
+    public void RestartButtonLvl3()
+    {
+        Time.timeScale = 1; // Resume the game
+        SceneManager.LoadScene("Level3");
+    }
 
     public void RestartButtonLvl5()
     {
